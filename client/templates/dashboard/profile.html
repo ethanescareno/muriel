@@ -62,11 +62,33 @@
     </div>
   <!--PROFESSIONAL RECORD-->
      <div class="row">
-        <div class="box col-md-10">RECORD</div>
+        <div class="box col-md-10">Work RECORD <button type="button" id="addRecord" name="button"><i class="fa fa-plus"></i>Add Record</button></div>
+     </div>
+     <div class="row">
+       {{#each records}}<br>
+        {{#if showEditRecord}}
+        {{> workRecordEdit data=recordData}}
+          {{else}}
+         {{> workRecordView data=this}}
+         <div class="form-group">
+          <button type="button" id="editRecord"> <i class="fa fa-pencil"></i>Edit</button>
+         </div>
+         <div class="form-group">
+           <button type="button" id="deleteRecord"><i class="fa fa-trash">Delete</i></button>
+         </div>
+        {{/if}}
+       {{/each}}
      </div>
   <!--EDUCATION, TRAINIING & CERTS-->
      <div class="row">
-        <div class="box col-md-10">Education</div>
+        <div class="box col-md-10">Education <button type="button" id="addEducation" name="button"><i class="fa fa-plus"></i>Add Education</button></div>
+     </div>
+     <div class="row">
+       {{#each education}}<br>
+       <div class="form-group">
+         <label for="mResume">Education</label>
+       </div>
+       {{/each}}
      </div>
    </form>
   </div>
