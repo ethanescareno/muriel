@@ -1,0 +1,68 @@
+<template name="profile">
+  {{> flashMessages}}
+  {{#with userinfo}}
+  <div class="template-profile">
+  <!--STATUS-->
+  <!--PIC, CONTACT AND BLURB-->
+  <form>
+    <div class="row">
+        <div class="box col-md-10">Status - Preview
+          <button type="button" class="btn saveProfile"> SAVE</button>
+        </div>
+    </div>
+   <div class="row">
+        <div class="box col-md-2">pic</div>
+        <div class="box col-md-3">
+          <div class="form-group">
+            <label for="blurb">Short Bio</label>
+            <textarea id="blurb" style="width:100%; height:150px; border:1px solid #eeeeee;" class="blurbtxt col-md-4" value="{{this.profile.blurb}}" name="profile.blurb">{{this.profile.blurb}}</textarea>
+          </div>
+        </div>
+        <div class="box col-md-4">Public Contact Info<br><br>
+          <div class="form-group row">
+            <label for="p_phone" class="col-xs-2 col-form-label">Phone</label>
+            <div class="col-xs-10">
+              <input class="form-control p_phone" name="profile.p_phone" type="text" value="{{this.profile.p_phone}}" id="p-phone">
+            </div>
+          </div>
+        <div class="form-group row">
+            <label for="p_email" class="col-xs-2 col-form-label">Email</label>
+            <div class="col-xs-10">
+              <input class="form-control p_email" name="profile.p_email" type="text" value="{{this.profile.p_email}}" id="p-email">
+            </div>
+          </div>
+        <div class="form-group row">
+            <label for="p_website" class="col-xs-2 col-form-label">Website</label>
+            <div class="col-xs-10">
+              <input class="form-control p_website" name="profile.p_website" type="text" value="{{this.profile.p_website}}" id="p-website">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="p_linkedin" class="col-xs-2 col-form-label">LinkedIn</label>
+            <div class="col-xs-10">
+              <input class="form-control p_linkedin"  name="profile.p_linkedin" type="text" value="{{this.profile.p_linkedin}}" id="p-linkedin">
+            </div>
+          </div>
+        </div>
+    </div>
+  <!--BIO-->
+    <div class="row">
+        <div class="box col-md-10">
+          <div class="form-group">
+            <label for="mResume">Mini-Resume</label>
+            <textarea id="mResume" style="width:100%; height:150px; border:1px solid #eeeeee;" class="mresumetxt col-md-4" value="{{this.profile.mresume}}" name="profile.mresume">{{this.profile.mresume}}</textarea>
+          </div>
+        </div>
+    </div>
+  <!--PROFESSIONAL RECORD-->
+     <div class="row">
+        <div class="box col-md-10">RECORD</div>
+     </div>
+  <!--EDUCATION, TRAINIING & CERTS-->
+     <div class="row">
+        <div class="box col-md-10">Education</div>
+     </div>
+   </form>
+  </div>
+  {{/with}}
+</template>

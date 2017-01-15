@@ -1,0 +1,68 @@
+<template name="account_setup">
+    <div class="container-fluid setup-page">
+    {{> flashMessages}}
+        <div style="margin-top:50px;" class="row">
+            <div class="col-lg-4">
+                
+            </div>
+            <div class="col-lg-4">
+                <center><div class="setup-title">Welcome to RecruiterQ. Let's get your account set up...</div></center>
+                <div class="">
+                    <div id="setupform">
+
+                         <div class="row">
+                            <span class="setupTextSm">First Name</span>
+                            <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="First Name" id="fName" />
+                               
+                        </div>
+
+                        <div class="row">
+                            <span class="setupTextSm">Last Name</span>
+                            <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="Last Name" id="lName" />
+                               
+                        </div>
+                                
+                        <div class="row">
+                            <span class="setupTextSm">Current work situation? Freelancer? Agency? Other?<br> (If agency please provide the company name)</span>
+                            <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="Current work status" id="workStatus" />
+                   
+                        </div>
+                        <div class="row">
+                            <span class="setupTextSm">Zip</span>
+                            <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="Zip" id="zip" />
+                  
+                        </div>
+                        <div class="row">
+                            <span class="setupTextSm">Phone</span>
+                            <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="555-555-5555" id="phone" />
+                  
+                        </div>
+                        <div class="row">
+                   
+                            <div class="col-sm-12 mt15">
+                                <p>
+                                    <!-- <center>
+                                        <input type="checkbox" id="remember" />
+                                        <label for="remember" class="smname">Remember Me</label>
+                                    </center> -->
+                                </p>
+                            </div>
+                        </div>    
+                        <div class="row">
+                       
+                            <div class="col-sm-12 mt15">
+                                <center>
+                                    <div class="btn setUpSubmit" id="toDash"> TO THE DASHBOARD&nbsp;&nbsp;&nbsp;<i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></div>
+                                </center>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 setup-right">
+            </div>
+        </div>
+    </div>
+    
+</template>

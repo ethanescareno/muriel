@@ -1,0 +1,5 @@
+ContactsController = AppController.extend({
+  data: {
+
+  }
+});

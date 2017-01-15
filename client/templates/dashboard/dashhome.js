@@ -1,0 +1,3 @@
+Template.dashhome.rendered = function() {
+
+};

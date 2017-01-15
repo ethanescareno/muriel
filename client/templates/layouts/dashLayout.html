@@ -1,0 +1,73 @@
+<template name="dashLayout">
+{{> _dashHeader}}
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+
+                <li class="{{isActiveRoute 'dashhome'}}">
+                    <a href="{{ pathFor 'dashhome' }}"><i class="fa fa-tachometer fa-lg {{isActiveRoute regex='dashhome'}}" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
+                </li>
+                <li class="{{isActiveRoute 'profile'}}">
+                    <a href="{{ pathFor 'profile' }}"><i class="fa fa-id-card fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Profile</a>
+                </li>
+                 <li class="{{isActiveRoute 'contacts'}}">
+                    <a href="{{ pathFor 'contacts' }}"><i class="fa fa-database fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Contacts</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Invites</a>
+                </li>
+                 <li>
+                    <a href="#"><i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Reviews</a>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Reports</a>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Account</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-md-1"> </div>
+
+                    <div class="col-md-10">
+                         {{> yield}}
+                    </div>
+                 <div class="col-md-1"> </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    <!-- Menu Toggle Script
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+
+
+
+
+  <div style="background-color:#3BB3FF; margin-top:0px;" class="container-fluid">
+    ss {{> yield}}
+  </div>-->
+
+  {{> _footer}}
+</template>
