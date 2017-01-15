@@ -23,19 +23,25 @@ Template.profile.events({
       }
     };
 
-    newData.onboard.profileStep = profilePassedGood(Meteor.user());
-    console.log(newData);
-    Meteor.users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: newData
-    }, function(error, result) {
-      if (error) {
-        FlashMessages.sendInfo(error.message);
-      } else {
-        FlashMessages.sendInfo("Profile saved.");
-      }
-    });
+    if (!newData.profile.p_phone) {
+      alert("Missing phone")
+    } else if(!newData.profile.p_email){
+      alert("Missing Email")
+    } else {
+      newData.onboard.profileStep = profilePassedGood(Meteor.user());
+      console.log(newData);
+      Meteor.users.update({
+        _id: Meteor.userId()
+      }, {
+        $set: newData
+      }, function(error, result) {
+        if (error) {
+          FlashMessages.sendInfo(error.message);
+        } else {
+          FlashMessages.sendInfo("Profile saved.");
+        }
+      });
+    }
   }
 });
 
@@ -44,3 +50,15 @@ Template.profile.helpers({
         return Meteor.users.findOne() || {};
     },
 });
+
+Template.profile.onRendered(function() {
+  Meteor.setTimeout(function() {
+    $("#dropzoneProfile").dropzone({
+      url: 'none',
+      maxFiles: 1,
+      accept: function(file, done) {
+        uploadCSV(file);
+      }
+    });
+  }, 0)
+})
