@@ -1,5 +1,66 @@
 <template name="contacts">
-  <div class="template-dashhome">
-      <h1>Contacts Home</h1>
+  <div class="template-profile">
+    <div class="row">
+        <div class="box col-md-10">
+          <button type="button" class="btn saveProfile" href="https://www.linkedin.com/people/export-settings?exportNetwork=Export&outputType=microsoft_outlook" target="_blank">BULK Import from Linkedin</button>
+          <button type="button" class="btn saveProfile" id="openManualImport">Manual Add Contact</button>
+        </div>
+    </div>
+    <div class="row">
+      <div class="box col-md-10">
+        <form class="dropzone" id="dropzoneDiv">
+          <div class="dz-message">
+            <h3>Drag Linkeding CSV File to Export here</h3>
+          </div>
+        </form>
+      </div>
+    </div>
+    {{#if showTabs}}
+    <div class="row">
+  {{#basicTabs name="" tabs=tabs activeTab=activeTab}}
+    {{#tabContent slug="companies"}}
+    Companies
+    {{/tabContent}}
+
+    {{#tabContent slug="candidates"}}
+    Candidates
+    {{/tabContent}}
+
+    {{#tabContent slug="unfiltered"}}
+    <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Company Name</th>
+        <th>Title</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each csvData}}
+      <tr>
+          <td>
+            <select name="importname{{this._id}}" class="typeContactSelect" id="import{{this._id}}" data-id={{this._id}}>
+              <option value="companie" selected>Companie</option>
+              <option value="candidate">Candidate</option>
+            </select>
+          </td>
+          <td>{{this.firstName}}</td>
+          <td>{{this.lastName}}</td>
+          <td>{{this.company}}</td>
+          <td>{{this.title}}</td>
+          <td>{{this.email}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <button type="button" class="btn" id="saveData">Save Contacts</button>
+    {{/tabContent}}
+
+  {{/basicTabs}}
+    </div>
+    {{/if}}
   </div>
 </template>

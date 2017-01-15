@@ -1,5 +1,6 @@
 ContactsController = AppController.extend({
-  data: {
-
+  layoutTemplate: 'dashLayout',
+  onAfterAction: function () {
+    Meta.setTitle('Contacts');
   }
 });

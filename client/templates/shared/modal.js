@@ -1,6 +1,18 @@
 Template.modal.events({
   'click #saveModal': function(event, templateInstance) {
-    templateInstance.data.onSubmit(event, templateInstance)
+    if (templateInstance.data.callFunction) {
+      templateInstance.data.onSubmit(event, templateInstance)
+    }else {
+      CSVData.insert({
+        type: $('#type').val(),
+        title: $('#title').val(),
+        firstName: $('#firstName').val(),
+        lastName: $('#lastName').val(),
+        email: $('#email').val(),
+        company: $('#company').val()
+      });
+      $('.modal').modal('hide');
+    }
   },
   'click #closeModal': function(event, templateInstance) {
     console.log('modal');

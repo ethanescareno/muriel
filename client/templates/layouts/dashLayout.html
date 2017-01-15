@@ -15,6 +15,7 @@
                  <li class="{{isActiveRoute 'contacts'}}">
                     <a href="{{ pathFor 'contacts' }}"><i class="fa fa-database fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Contacts</a>
                 </li>
+                {{#if onboardingComplete}}
                 <li>
                     <a href="#"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Invites</a>
                 </li>
@@ -25,7 +26,7 @@
                 <li>
                     <a href="#"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Reports</a>
                 </li>
-
+                {{/if}}
                 <li>
                     <a href="#"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Account</a>
                 </li>
@@ -47,27 +48,6 @@
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
-
-
-
-    <!-- Menu Toggle Script
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-
-
-
-
-
-  <div style="background-color:#3BB3FF; margin-top:0px;" class="container-fluid">
-    ss {{> yield}}
-  </div>-->
-
   {{> _footer}}
 </template>

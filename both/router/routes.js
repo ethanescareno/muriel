@@ -17,14 +17,13 @@ checkUserOnboard = function() {
           modalToRenderName: 'longText'
         }, document.body);
       } else if (!profilePassed) {
-        this.render('profile');
+        Router.go('profile');
       } else if (!linkedinPassed) {
-        this.render('contacts');
-      } else {
-        this.next();
+        Router.go('contacts');
       }
     }
   }
+  this.next();
 };
 
 Router.route('/', {
@@ -51,14 +50,20 @@ Router.route('/dashboard/profile', {
   name: 'profile',
   template: 'profile',
   controller: 'ProfileController',
-  onBeforeAction: checkUserOnboard
+  onBeforeAction: checkUserOnboard,
+  waitOn: function() {
+    Meteor.subscribe('userData');
+  },
 });
 
 Router.route('/dashboard/contacts', {
   name: 'contacts',
   template: 'contacts',
   controller: 'ContactsController',
-  onBeforeAction: checkUserOnboard
+  onBeforeAction: checkUserOnboard,
+  waitOn: function() {
+    Meteor.subscribe('userData');
+  },
 });
 
 Router.plugin('ensureSignedIn', {
