@@ -85,9 +85,17 @@
      </div>
      <div class="row">
        {{#each education}}<br>
-       <div class="form-group">
-         <label for="mResume">Education</label>
-       </div>
+        {{#if showEditEducation}}
+        {{> educationRecordEdit data=educationData}}
+          {{else}}
+         {{> educationRecordView data=this}}
+         <div class="form-group">
+          <button type="button" id="editEducation"> <i class="fa fa-pencil"></i>Edit</button>
+         </div>
+         <div class="form-group">
+           <button type="button" id="deleteEducation"><i class="fa fa-trash">Delete</i></button>
+         </div>
+        {{/if}}
        {{/each}}
      </div>
    </form>

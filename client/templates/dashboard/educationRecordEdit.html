@@ -1,0 +1,27 @@
+<template name="educationRecordEdit">
+  {{#with education}}
+  <form>
+    <div class="form-group">
+      <label for="institutionName">Insitution Name</label>
+      <input class="form-control"  name="institutionName" type="text" value="{{this.institutionName}}" id="institutionName">
+    </div>
+    <div class="form-group">
+      <label for="courseOfStudy">Course of Stufy</label>
+      <input class="form-control"  name="courseOfStudy" type="text" value="{{this.courseOfStudy}}" id="courseOfStudy">
+    </div>
+    <div class="form-group">
+      <label for="certEarned">Certificate or Diploma Earned</label>
+      <input class="form-control"  name="certEarned" type="text" value="{{this.certEarned}}" id="certEarned">
+    </div>
+    <div class="form-group">
+      <label for="yearEarned">Year Earned cert or Diploma</label>
+      <input class="form-control"  name="yearEarned" type="text" value="{{this.yearEarned}}" id="yearEarned">
+    </div>
+    <div class="form-group">
+      <button type="button" name="button" id="cancelEdit">Cancel</button>
+      <button type="submit" name="button" id="save">Save</button>
+      <button type="button" name="button" id="delete">Delete</button>
+    </div>
+  </form>
+  {{/with}}
+</template>

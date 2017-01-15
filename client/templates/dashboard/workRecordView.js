@@ -1,5 +1,6 @@
 Template.workRecordView.helpers({
   record: function() {
-    return Template.instance().data;
+    console.log(Template.instance().data.data);
+    return Template.instance().data.data;
   }
 })

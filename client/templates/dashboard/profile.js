@@ -14,6 +14,12 @@ Template.profile.events({
   'click #deleteRecord': function(event, templateInstance) {
     Records.remove({_id: this._id})
   },
+  'click #editEducation': function(event, templateInstance) {
+    templateInstance.educationToEditId.set(this._id)
+  },
+  'click #deleteRecord': function(event, templateInstance) {
+    Education.remove({_id: this._id})
+  },
   'click #addRecord': function(event, templateInstance) {
     Records.insert({
       isNew: true,
@@ -22,6 +28,7 @@ Template.profile.events({
   },
   'click #addEducation': function(event, templateInstance) {
     Education.insert({
+      isNew: true,
       type: 'education'
     })
   },
@@ -35,7 +42,8 @@ Template.profile.events({
         p_website: $('#p-website').val(),
         p_linkedin: $('#p-linkedin').val(),
         mresume: $('#mResume').val(),
-        records: Records.find().fetch()
+        records: Records.find().fetch(),
+        education: Education.find().fetch()
       },
       onboard: {
         modalDashboard: Meteor.user().onboard.modalDashboard || false,
@@ -59,7 +67,9 @@ Template.profile.events({
         } else {
           FlashMessages.sendInfo("Profile saved.");
           Records.remove({})
+          Education.remove({})
           templateInstance.inserted.set(false);
+          templateInstance.educationInserted.set(false)
         }
       });
     }
@@ -79,7 +89,16 @@ Template.profile.helpers({
   showEditRecord: function() {
     return this.isNew || Template.instance().recordToEditId.get() === this._id;
   },
+  showEditEducation: function() {
+    return this.isNew || Template.instance().educationToEditId.get() === this._id;
+  },
   recordData: function() {
+    var data = this;
+    data.templateParent = Template.instance();
+    return data;
+  },
+
+  educationData: function() {
     var data = this;
     data.templateParent = Template.instance();
     return data;
@@ -107,11 +126,21 @@ Template.profile.onRendered(function() {
       });
       self.inserted.set(true);
     }
+
+    if (user && user.education && user.education.length > 0 && !self.educationInserted.get()) {
+      user.education.forEach(function(education) {
+        delete education._id;
+        Education.insert(education)
+      });
+      self.educationInserted.set(true);
+    }
   })
 })
 
 Template.profile.onCreated(function() {
   var self = this;
   self.recordToEditId = new ReactiveVar(null)
+  self.educationToEditId = new ReactiveVar(null)
   self.inserted = new ReactiveVar(false)
+  self.educationInserted = new ReactiveVar(false)
 })
