@@ -7,8 +7,6 @@ Template.workRecordEdit.events({
   'documentSubmit': function (event, template, doc) {
       doc.isNew = false
       delete doc._id
-      console.log(doc);
-      console.log(template.data.data._id);
       Records.update({
         _id: template.data.data._id
       }, {

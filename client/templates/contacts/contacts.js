@@ -20,7 +20,6 @@ Template.contacts.events({
     }, document.body);
   },
   'click #saveData': function() {
-    console.log('log?');
     Meteor.call('insertContacts', CSVData.find().fetch(), function(error, result){
       if (error) {
         console.log(error);
@@ -82,7 +81,6 @@ var uploadCSV = function(file) {
         var recordsFound = data.length;
         data.splice(0, 1);
         data.forEach(function(contact) {
-          console.log(contact);
           CSVData.insert({
             title: contact[0] || 'No Title',
             firstName: contact[1] || 'No First Name',

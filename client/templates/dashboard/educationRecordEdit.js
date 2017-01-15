@@ -7,8 +7,6 @@ Template.educationRecordEdit.events({
   'documentSubmit': function (event, template, doc) {
       doc.isNew = false
       delete doc._id
-      console.log(doc);
-      console.log(template.data.data._id);
       Education.update({
         _id: template.data.data._id
       }, {

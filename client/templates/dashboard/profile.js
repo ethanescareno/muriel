@@ -7,7 +7,41 @@ function profilePassedGood(user) {
   return true;
 }
 
+function initiDropZone(tmpl) {
+  Meteor.setTimeout(function() {
+    $("#dropzoneProfile").dropzone({
+      url: 'none',
+      maxFiles: 1,
+      accept: function(file, done) {
+        var fsFile = new FS.File(file);
+        fsFile.metadata = {
+          owner: Meteor.userId()
+        }
+        var queryPicture = ProfileImages.findOne({
+          'metadata.owner': Meteor.userId()
+        })
+        console.log(queryPicture);
+        if (queryPicture) {
+          ProfileImages.remove({_id: queryPicture._id})
+        }
+        ProfileImages.insert(fsFile, function (error) {
+          if (error) {
+            alert(error.message)
+          } else {
+            tmpl.showEditImage.set(false);
+            Dropzone.forElement("#dropzoneProfile").removeAllFiles(true);
+          }
+        });
+      }
+    });
+  }, 0)
+}
+
 Template.profile.events({
+  'click #editPicture': function(event, templateInstance) {
+    templateInstance.showEditImage.set(true);
+    initiDropZone(templateInstance)
+  },
   'click #editRecord': function(event, templateInstance) {
     templateInstance.recordToEditId.set(this._id)
   },
@@ -102,21 +136,31 @@ Template.profile.helpers({
     var data = this;
     data.templateParent = Template.instance();
     return data;
+  },
+  profilePicture: function() {
+    return ProfileImages.findOne({
+      'metadata.owner': Meteor.userId()
+    })
+  },
+  profilePictureExist: function() {
+    return ProfileImages.find({
+      'metadata.owner': Meteor.userId()
+    }).count() > 0
+  },
+  showEditProfilePicture: function() {
+    return Template.instance().showEditImage.get() || ProfileImages.find({
+      'metadata.owner': Meteor.userId()
+    }).count() === 0;
+  },
+  getCurrentsize: function() {
+    return Template.instance().showEditImage.get() ? 5 : 10;
   }
 });
 
 Template.profile.onRendered(function() {
   var self = this;
-  Meteor.setTimeout(function() {
-    $("#dropzoneProfile").dropzone({
-      url: 'none',
-      maxFiles: 1,
-      accept: function(file, done) {
-        uploadCSV(file);
-      }
-    });
-  }, 0)
 
+  initiDropZone(self)
   this.autorun(function() {
     const user = Meteor.user() && Meteor.user().profile
     if (user && user.records && user.records.length > 0 && !self.inserted.get()) {
@@ -142,5 +186,6 @@ Template.profile.onCreated(function() {
   self.recordToEditId = new ReactiveVar(null)
   self.educationToEditId = new ReactiveVar(null)
   self.inserted = new ReactiveVar(false)
+  self.showEditImage = new ReactiveVar(false)
   self.educationInserted = new ReactiveVar(false)
 })

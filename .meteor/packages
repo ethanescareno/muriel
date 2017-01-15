@@ -37,3 +37,4 @@ templates:tabs
 reactive-var
 random
 cfs:gridfs
+cfs:standard-packages
