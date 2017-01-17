@@ -4,7 +4,7 @@ Template._dashHeader.helpers({
     if (user && user.onboard) {
       const linkedinDone = user.onboard.linkedin;
       const profileDone = user.onboard.profileStep;
-      return !linkedinDone && !profileDone;
+      return !linkedinDone || !profileDone;
     }
     return true;
   },

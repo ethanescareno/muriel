@@ -2,7 +2,9 @@
   <div class="template-profile">
     <div class="row">
         <div class="box col-md-10">
-          <button type="button" class="btn saveProfile" href="https://www.linkedin.com/people/export-settings?exportNetwork=Export&outputType=microsoft_outlook" target="_blank">BULK Import from Linkedin</button>
+          <a href="https://www.linkedin.com/people/export-settings?exportNetwork=Export&outputType=microsoft_outlook" target="_blank" style="color: black;">
+          <button type="button" class="btn saveProfile">BULK Import from Linkedin</button>
+          </a>
           <button type="button" class="btn saveProfile" id="openManualImport">Manual Add Contact</button>
         </div>
     </div>
@@ -27,8 +29,7 @@
     {{/tabContent}}
 
     {{#tabContent slug="unfiltered"}}
-    <table>
-    <thead>
+    <table style="width:100%">
       <tr>
         <th>Type</th>
         <th>First name</th>
@@ -37,10 +38,8 @@
         <th>Title</th>
         <th>Email</th>
       </tr>
-    </thead>
-    <tbody>
       {{#each csvData}}
-      <tr>
+        <tr>
           <td>
             <select name="importname{{this._id}}" class="typeContactSelect" id="import{{this._id}}" data-id={{this._id}}>
               <option value="companie" selected>Companie</option>
@@ -52,10 +51,9 @@
           <td>{{this.company}}</td>
           <td>{{this.title}}</td>
           <td>{{this.email}}</td>
-      </tr>
+        </tr>
       {{/each}}
-    </tbody>
-  </table>
+    </table>
   <button type="button" class="btn" id="saveData">Save Contacts</button>
     {{/tabContent}}
 

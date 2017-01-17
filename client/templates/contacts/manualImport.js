@@ -1,7 +1,15 @@
 Forms.mixin(Template.manualImport);
 
 Template.manualImport.events({
-  'documentSubmit': function (e, tmpl, doc) {
-    doc.owner = Meteor.userId();
+  'click #save': function (e, tmpl, doc) {
+    CSVData.insert({
+      type: $('#type').val(),
+      title: $('#title').val(),
+      firstName: $('#firstName').val(),
+      lastName: $('#lastName').val(),
+      email: $('#email').val(),
+      company: $('#company').val()
+    });
+    $('.modal').modal('hide');
   }
 });
