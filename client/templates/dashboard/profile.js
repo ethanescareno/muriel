@@ -3,8 +3,13 @@ Records = new Mongo.Collection(null);
 
 Forms.mixin(Template.profile);
 
-function profilePassedGood(user) {
-  return true;
+function profilePassedGood(newData) {
+  let response = false;
+  //To call a profile complete we need a short bio, phone, email, something in mini resume, and at least one work record
+  if (newData.profile.blurb && newData.profile.p_phone && newData.profile.p_email && newData.profile.mresume && newData.profile.records && newData.profile.records.length > 0) {
+    response = true
+  }
+  return response;
 }
 
 function initiDropZone(tmpl) {
@@ -38,6 +43,14 @@ function initiDropZone(tmpl) {
 }
 
 Template.profile.events({
+  'click .previewProfile': function() {
+    const user = Meteor.user()
+    Router.go('previewProfile', {
+      firstName: user.profile && user.profile.fistName || 'nofirstname',
+      lastName: user.profile && user.profile.lastName || 'nolastName',
+      userId: user._id
+    })
+  },
   'click #editPicture': function(event, templateInstance) {
     templateInstance.showEditImage.set(true);
     initiDropZone(templateInstance)
@@ -90,7 +103,7 @@ Template.profile.events({
     } else if(!newData.profile.p_email){
       alert("Missing Email")
     } else {
-      newData.onboard.profileStep = profilePassedGood(Meteor.user());
+      newData.onboard.profileStep = profilePassedGood(newData);
       Meteor.users.update({
         _id: Meteor.userId()
       }, {

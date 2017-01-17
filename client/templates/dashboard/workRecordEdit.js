@@ -19,7 +19,7 @@ Template.workRecordEdit.events({
         }
       })
    },
-  'click #delete': function(event, template) {
+  'click #delete': function(event, templateInstance) {
     Records.remove({
       _id: templateInstance.data._id
     });

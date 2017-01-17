@@ -5,3 +5,11 @@ Meteor.publish('userData', function() {
     }
   });
 });
+
+Meteor.publish('userUnique', function(userId) {
+  return Meteor.users.find({_id: userId}, {
+    fields: {
+      'onboard': 1
+    }
+  });
+});
