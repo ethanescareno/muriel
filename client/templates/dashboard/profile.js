@@ -130,8 +130,14 @@ Template.profile.helpers({
   records: function() {
     return Records.find();
   },
+  recordsExists: function() {
+    return Records.find().count();
+  },
   education:function() {
     return Education.find();
+  },
+  educationExists:function() {
+    return Education.find().count();
   },
   showEditRecord: function() {
     return this.isNew || Template.instance().recordToEditId.get() === this._id;
@@ -190,6 +196,29 @@ Template.profile.onRendered(function() {
         Education.insert(education)
       });
       self.educationInserted.set(true);
+    }
+    const user1 = Meteor.user();
+    if (user1) {
+      const onboarding = user1 && user1.onboard;
+      if (onboarding) {
+        const modalPassed = onboarding.modalDashboard;
+        const profilePassed = onboarding.profileStep;
+        const linkedinPassed = onboarding.linkedin;
+        if (!modalPassed) {
+          Blaze.renderWithData(Template.modal, {
+            onSubmit: function(event, templateInstance) {
+              Meteor.call('updateModalUser');
+              $('.modal').modal('hide');
+            },
+            modalTitle: 'Please Read Careful',
+            modalToRenderName: 'longText'
+          }, document.body);
+        } else if (!profilePassed) {
+          Router.go('profile');
+        } else if (!linkedinPassed) {
+          Router.go('contacts');
+        }
+      }
     }
   })
 })

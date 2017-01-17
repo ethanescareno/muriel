@@ -23,7 +23,7 @@ Template.workRecordEdit.events({
     Records.remove({
       _id: templateInstance.data._id
     });
-    template.data.data.templateParent.recordToEditId.set(null);
+    templateInstance.data.data.templateParent.recordToEditId.set(null);
   },
 })
 

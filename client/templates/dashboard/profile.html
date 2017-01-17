@@ -85,16 +85,38 @@
        {{#each records}}<br>
         {{#if showEditRecord}}
         {{> workRecordEdit data=recordData}}
-          {{else}}
-         {{> workRecordView data=this}}
-         <div class="form-group">
-          <button type="button" id="editRecord"> <i class="fa fa-pencil"></i>Edit</button>
-         </div>
-         <div class="form-group">
-           <button type="button" id="deleteRecord"><i class="fa fa-trash">Delete</i></button>
-         </div>
         {{/if}}
        {{/each}}
+       {{#if recordsExists}}
+       <table style="width:100%">
+         <tr>
+           <th>Company Name</th>
+           <th>Position</th>
+           <th>Year Start</th>
+           <th>Year End</th>
+           <th>Type</th>
+           <th>Description</th>
+           <th>Edit</th>
+           <th>Delete</th>
+         </tr>
+         {{#each records}}
+         <tr>
+           <td>{{this.companyName}}</td>
+           <td>{{this.position}}</td>
+           <td>{{this.yearStart}}</td>
+           <td>{{this.yearEnd}}</td>
+           <td>{{this.industries}}</td>
+           <td>{{this.dutiesDescription}}</td>
+           <td>
+             <i class="fa fa-pencil" id="editRecord"></i>
+           </td>
+           <td>
+             <i class="fa fa-trash" id="deleteRecord">Delete</i>
+           </td>
+         </tr>
+         {{/each}}
+       </table>
+       {{/if}}
      </div>
   <!--EDUCATION, TRAINIING & CERTS-->
      <div class="row">
@@ -104,16 +126,34 @@
        {{#each education}}<br>
         {{#if showEditEducation}}
         {{> educationRecordEdit data=educationData}}
-          {{else}}
-         {{> educationRecordView data=this}}
-         <div class="form-group">
-          <button type="button" id="editEducation"> <i class="fa fa-pencil"></i>Edit</button>
-         </div>
-         <div class="form-group">
-           <button type="button" id="deleteEducation"><i class="fa fa-trash">Delete</i></button>
-         </div>
         {{/if}}
        {{/each}}
+       {{#if educationExists}}
+       <table style="width:100%">
+         <tr>
+           <th>Institution Name</th>
+           <th>Course of Study</th>
+           <th>Cert Earned</th>
+           <th>Year Ended</th>
+           <th>Edit</th>
+           <th>Delete</th>
+         </tr>
+         {{#each education}}
+         <tr>
+           <td>{{this.institutionName}}</td>
+           <td>{{this.courseOfStudy}}</td>
+           <td>{{this.certEarned}}</td>
+           <td>{{this.yearEarned}}</td>
+           <td>
+             <i class="fa fa-pencil" id="editEducation"></i>
+           </td>
+           <td>
+             <i class="fa fa-trash" id="deleteEducation">Delete</i>
+           </td>
+         </tr>
+         {{/each}}
+       </table>
+       {{/if}}
      </div>
    </form>
   </div>
