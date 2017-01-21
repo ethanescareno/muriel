@@ -4,7 +4,7 @@ Template.account_setup.events({
     },
     "click .setUpSubmit": function(e) {
 
-        
+
         userId = Meteor.userId();
 
         var firstName = $("#fName").val();
@@ -33,6 +33,6 @@ Template.account_setup.events({
        Meteor.users.update(userId, { $set: {"profile.firstName": firstName, "profile.lastName": lastName, "profile.workStatus": workSitch, "profile.zip": zip, "profile.phone": phone, "profile.createAcct1": true} });
 
        Router.go("/dashboard/home");
-       
+
     }
-})
+});

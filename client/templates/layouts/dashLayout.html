@@ -4,15 +4,16 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-
+                {{#if onboardingComplete}}
                 <li class="{{isActiveRoute 'dashhome'}}">
                     <a href="{{ pathFor 'dashhome' }}"><i class="fa fa-tachometer fa-lg {{isActiveRoute regex='dashhome'}}" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
                 </li>
+                {{/if}}
                 <li class="{{isActiveRoute 'profile'}}">
                     <a href="{{ pathFor 'profile' }}"><i class="fa fa-id-card fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Profile</a>
                 </li>
                  <li class="{{isActiveRoute 'contacts'}}">
-                    <a href="{{ pathFor 'contacts' }}"><i class="fa fa-database fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Contacts</a>
+                    <a href="" id='contacts' class="activeUser"><i class="fa fa-database fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Contacts</a>
                 </li>
                 {{#if onboardingComplete}}
                 <li>
@@ -27,7 +28,7 @@
                 </li>
                 {{/if}}
                 <li>
-                    <a href="#"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Account</a>
+                    <a href="" id="account" class="activeUser"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Account</a>
                 </li>
             </ul>
         </div>

@@ -48,3 +48,13 @@ Router.route('/preview/:firstName/:lastName/recruiter-q/:userId', {
 Router.plugin('ensureSignedIn', {
   only: ['dashboard']
 });
+
+Router.route('/dashborad/account',{
+  name: 'account',
+  template: 'account',
+  // layoutTemplate: 'dashLayout',
+  controller: 'ControllerAccount',
+  waitOn: function() {
+    Meteor.subscribe('userData');
+  },
+});

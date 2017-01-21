@@ -44,3 +44,34 @@ Template.dashLayout.onRendered(function() {
     }
   })
 })
+Template.dashLayout.events({
+  'click .activeUser': function(event){
+    event.preventDefault();
+    const goRoute = $(event.currentTarget).attr('id');
+    const user = Meteor.user();
+    if (!user) {
+      return;
+    }
+    const onboard = user && user.onboard;
+
+    if (!onboard) {
+      return;
+    }
+
+    const profileDone = onboard.profileStep;
+    const textDone = onboard.modalDashboard;
+    const linkedinDone = onboard.linkedin;
+    if (profileDone && textDone && linkedinDone) {
+      if (goRoute == 'contacts') {
+        Router.go('contacts');
+      } else if (goRoute == 'account') {
+        Router.go('account');
+      }
+    } else {
+      Blaze.renderWithData(Template.modal, {
+        modalTitle: 'Please Complete Your Profile',
+        modalToRenderName: 'longText'
+      }, document.body);
+    }
+  }
+})

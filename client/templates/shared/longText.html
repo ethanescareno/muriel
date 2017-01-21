@@ -3,9 +3,11 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">{{modalTitle}}</h4>
   </div>
+  {{#if modalBody}}
   <div class="modal-body">
-    Thanks Please hit OK
+    {{{modalBody}}}
   </div>
+  {{/if}}
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" id="clickedOK">OK</button>
   </div>
