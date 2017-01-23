@@ -46,7 +46,7 @@ Template.profile.events({
   'click .previewProfile': function() {
     const user = Meteor.user()
     Router.go('previewProfile', {
-      firstName: user.profile && user.profile.fistName || 'nofirstname',
+      firstName: user.profile && user.profile.firstName || 'nofirstname',
       lastName: user.profile && user.profile.lastName || 'nolastName',
       userId: user._id
     })
@@ -99,15 +99,15 @@ Template.profile.events({
     };
 
     if (!newData.profile.p_phone) {
-      alert("Missing phone")
+      return FlashMessages.sendWarning("Missing phone")
     } else if(!newData.profile.p_email){
-      alert("Missing Email")
+      return FlashMessages.sendWarning("Missing Email")
     } else {
       newData.onboard.profileStep = profilePassedGood(newData);
       Meteor.users.update({
         _id: Meteor.userId()
       }, {
-        $set: newData
+        $set: newData,
       }, function(error, result) {
         if (error) {
           FlashMessages.sendInfo(error.message);

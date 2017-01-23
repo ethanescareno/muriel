@@ -35,7 +35,7 @@ Router.route('/dashboard/contacts', {
   },
 });
 
-Router.route('/preview/:firstName/:lastName/recruiter-q/:userId', {
+Router.route('/preview/:firstName-:lastName-recruiter-q-:userId', {
   name: 'previewProfile',
   template: 'previewProfile',
   controller: 'PreviewProfileController',

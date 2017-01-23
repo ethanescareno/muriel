@@ -13,7 +13,7 @@ Template._dashHeader.helpers({
     if (user && user.onboard) {
       const linkedinDone = user.onboard.linkedin;
       const profileDone = user.onboard.profileStep;
-      return !profileDone ? 'Step One Profile' : 'Step 2 Contacts';
+      return !profileDone ? 'Step 1 Profile' : 'Step 2 Contacts';
     }
     return 'None';
   },
