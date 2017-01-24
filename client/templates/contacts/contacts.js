@@ -1,5 +1,3 @@
-CSVData = new Mongo.Collection(null);
-
 Template.contacts.events({
   'change .typeContactSelect': function(event, target) {
     const idToUpdate = $(event.target).data().id;
@@ -12,6 +10,9 @@ Template.contacts.events({
       }
     })
   },
+  'click #bulkImport': function(){
+    window.open('https://www.linkedin.com/people/export-settings?exportNetwork=Export&outputType=microsoft_outlook','linkedin','resizable,height=420,width=640');
+  },
   'click #openManualImport': function(event, template) {
     Blaze.renderWithData(Template.modal, {
       modalTitle: 'Manual Import Contacts',
@@ -20,25 +21,48 @@ Template.contacts.events({
     }, document.body);
   },
   'click #saveData': function() {
-    Meteor.call('insertContacts', CSVData.find().fetch(), function(error, result){
-      if (error) {
-        console.log(error);
-      } else {
-        const user = Meteor.user();
-        const onboard = user.onboard;
-        const linkedinDone = onboard.linkedin;
-        if (!linkedinDone) {
-          Meteor.users.update({
-            _id: Meteor.userId()
-          }, {
-            $set: {
-              'onboard.linkedin': true
+    const contacts = CSVData.find().fetch();
+    contacts.forEach(function(cont) {
+      const currentCont = cont
+      Contacts.insert(cont, function(e, result){
+        if (e) {
+            console.log(e);
+          } else {
+            const user = Meteor.user();
+            const onboard = user.onboard;
+            const linkedinDone = onboard.linkedin;
+            if (!linkedinDone) {
+              Meteor.users.update({
+                _id: Meteor.userId()
+              }, {
+                $set: {
+                  'onboard.linkedin': true
+                }
+              })
             }
-          })
-        }
-        CSVData.remove({});
-      }
-    })
+            CSVData.remove(currentCont._id);
+          }
+      });
+    });
+    // Meteor.call('insertContacts', CSVData.find().fetch(), function(error, result){
+    //   if (error) {
+    //     console.log(error);
+    //   } else {
+    //     const user = Meteor.user();
+    //     const onboard = user.onboard;
+    //     const linkedinDone = onboard.linkedin;
+    //     if (!linkedinDone) {
+    //       Meteor.users.update({
+    //         _id: Meteor.userId()
+    //       }, {
+    //         $set: {
+    //           'onboard.linkedin': true
+    //         }
+    //       })
+    //     }
+    //     CSVData.remove({});
+    //   }
+    // });
   }
 })
 
@@ -53,12 +77,21 @@ Template.contacts.helpers({
   activeTab: function () {
     return Session.get('activeTab') || 'unfiltered';
   },
-  csvData: function() {
-    return CSVData.find()
-  },
+  // csvData: function() {
+  //   return CSVData.find()
+  // },
   showTabs: function() {
     return CSVData.find().count() > 0
-  }
+  },
+  isReady: function () {
+        return Template.instance().pagination.ready();
+    },
+    templatePagination: function () {
+        return Template.instance().pagination;
+    },
+    csvData: function () {
+        return Template.instance().pagination.getPage();
+    },
 })
 
 var readFile = function(file, callback) {
@@ -142,4 +175,10 @@ Template.contacts.onCreated(function () {
   var self = this;
   self.activeTab = new ReactiveVar(null)
   self.csvData = new ReactiveVar(null)
+  this.pagination = new Meteor.Pagination(CSVData, {
+        sort: {
+            _id: -1
+        },
+        perPage: 30
+    });
 });

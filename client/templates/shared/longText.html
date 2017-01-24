@@ -3,9 +3,9 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">{{modalTitle}}</h4>
   </div>
-  {{#if modalBody}}
+  {{#if modalTemplate}}
   <div class="modal-body">
-    {{{modalBody}}}
+     {{> Template.dynamic template=modalTemplate }}
   </div>
   {{/if}}
   <div class="modal-footer">

@@ -52,3 +52,5 @@ check
 standard-minifier-css
 standard-minifier-js
 shell-server
+kurounin:pagination
+kurounin:pagination-blaze

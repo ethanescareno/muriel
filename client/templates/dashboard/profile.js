@@ -1,6 +1,5 @@
 Education = new Mongo.Collection(null);
 Records = new Mongo.Collection(null);
-
 Forms.mixin(Template.profile);
 
 function profilePassedGood(newData) {
@@ -44,12 +43,13 @@ function initiDropZone(tmpl) {
 
 Template.profile.events({
   'click .previewProfile': function() {
-    const user = Meteor.user()
-    Router.go('previewProfile', {
+    const user = Meteor.user();
+    const newTab = Router.url('previewProfile', {
       firstName: user.profile && user.profile.firstName || 'nofirstname',
       lastName: user.profile && user.profile.lastName || 'nolastName',
       userId: user._id
-    })
+    });
+    window.open(newTab);
   },
   'click #editPicture': function(event, templateInstance) {
     templateInstance.showEditImage.set(true);
@@ -80,9 +80,12 @@ Template.profile.events({
     })
   },
   'click .saveProfile': function (event, templateInstance, doc) {
-    event.preventDefault()
-    var newData = {
+    event.preventDefault();
+    const user = Meteor.user();
+    const newData = {
       profile: {
+        firstName: user.profile && user.profile.firstName,
+        lastName: user.profile && user.profile.lastName,
         blurb: $(".blurbtxt").val(),
         p_phone: $('#p-phone').val(),
         p_email: $('#p-email').val(),
@@ -108,6 +111,7 @@ Template.profile.events({
         _id: Meteor.userId()
       }, {
         $set: newData,
+
       }, function(error, result) {
         if (error) {
           FlashMessages.sendInfo(error.message);
@@ -184,7 +188,7 @@ Template.profile.onRendered(function() {
     const user = Meteor.user() && Meteor.user().profile
     if (user && user.records && user.records.length > 0 && !self.inserted.get()) {
       user.records.forEach(function(record) {
-        delete record._id;
+        // delete record._id;
         Records.insert(record)
       });
       self.inserted.set(true);
@@ -192,7 +196,7 @@ Template.profile.onRendered(function() {
 
     if (user && user.education && user.education.length > 0 && !self.educationInserted.get()) {
       user.education.forEach(function(education) {
-        delete education._id;
+        // delete education._id;
         Education.insert(education)
       });
       self.educationInserted.set(true);

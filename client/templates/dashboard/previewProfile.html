@@ -1,5 +1,45 @@
 <template name="previewProfile">
   {{#with userData}}
     SHOWING DATA FOR USERID {{this._id}}
+    <div class="template-profile">
+      <div class="box row">
+        <div class="col-md-10">
+          <label for="p_phone" class="col-xs-2 col-form-label">Short Bio</label>
+          <div class="col-xs-10">
+          {{this.profile.blurb}}
+        </div>
+        </div>
+        <div class="col-md-10">
+          <label for="p_phone" class="col-xs-2 col-form-label">Phone</label>
+          <div class="col-xs-10">
+          {{this.profile.p_phone}}
+        </div>
+        </div>
+        <div class="col-md-10">
+          <label for="p_phone" class="col-xs-2 col-form-label">Email</label>
+          <div class="col-xs-10">
+          {{this.profile.p_email}}
+        </div>
+        </div>
+        <div class="col-md-10">
+          <label for="p_phone" class="col-xs-2 col-form-label">Website</label>
+          <div class="col-xs-10">
+          {{this.profile.p_website}}
+        </div>
+        </div>
+        <div class="col-md-10">
+          <label for="p_phone" class="col-xs-2 col-form-label">LinkedIn</label>
+          <div class="col-xs-10">
+          {{this.profile.p_linkedin}}
+        </div>
+        </div>
+        <div class="col-md-10">
+          <label for="p_phone" class="col-xs-2 col-form-label">Mini-Resume</label>
+          <div class="col-xs-10">
+          {{this.profile.mresume}}
+        </div>
+        </div>
+      </div>
+    </div>
   {{/with}}
 </template>
