@@ -8,6 +8,43 @@
 // Provide a static navbar from which we expand to create full-width, fixed, and
 // other navbar variations.
 
+.dash-nav-center.rq-progress {
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    top: 25px;
+    box-sizing: border-box;
+    width: 20em;
+    p {
+      display: inline-block;
+      width: 12.3em;
+      text-transform: uppercase;
+      font-size: 0.8em;
+    }
+    .rq-steps {
+      margin: 0 auto;
+      height: 1.5em;
+      width: 20em;
+      background-color: #f1f1f1;
+      border: 2px solid;
+      box-sizing: content-box;
+      .activeProfile {
+        background-color: #bbb;
+        height: 1.5em;
+        width: 50%;
+        float: left;
+        display: inline-block;
+      }
+      .activeContacts {
+        background-color: #bbb;
+        height: 1.5em;
+        width: 50%;
+        float: right;
+        display: inline-block;
+      }
+    }
+}
+
 .navbar {
   position: relative;
   min-height: @navbar-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)

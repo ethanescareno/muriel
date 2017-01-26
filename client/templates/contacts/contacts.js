@@ -20,6 +20,15 @@ Template.contacts.events({
       callFunction: false
     }, document.body);
   },
+  'change .typeContactSelect': function (e, t) {
+    const current = $(e.currentTarget);
+    const _id = this._id;
+    CSVData.update({_id: _id}, {
+      $set: {
+        type: current.val()
+      }
+    });
+  },
   'click #saveData': function() {
     const contacts = CSVData.find().fetch();
     contacts.forEach(function(cont) {
@@ -89,14 +98,17 @@ Template.contacts.helpers({
     return CSVData.find().count() > 0
   },
   isReady: function () {
-        return Template.instance().pagination.ready();
-    },
-    templatePagination: function () {
-        return Template.instance().pagination;
-    },
-    csvData: function () {
-        return Template.instance().pagination.getPage();
-    },
+      return Template.instance().pagination.ready();
+  },
+  templatePagination: function () {
+      return Template.instance().pagination;
+  },
+  csvData: function () {
+      return Template.instance().pagination.getPage();
+  },
+  selected: function (option) {
+    return this.type === option ? 'selected' : '';
+  }
 })
 
 var readFile = function(file, callback) {

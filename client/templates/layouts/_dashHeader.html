@@ -6,10 +6,15 @@
 
         <a class="navbar-brand {{isActiveRoute regex='dashhome'}}" href="{{ pathFor 'dashhome' }}"><img src="/images/logo.png" width="200px" height="75px"></a>
         {{#if showOnboardProgress}}
-        <div class="dash-nav-center">
-          <span class="navbar-inner">{{currentStep}}</span>
-          <progress value="{{currentProgress}}" max="100">{{currentProgress}}%</progress>
+        <div class="dash-nav-center rq-progress">
+          <p>Step 1. Profile</p>
+          <p>Step 2. Contacts</p>
+          <div class="rq-steps">
+            <div class="{{activeProfile}}"></div>
+            <div class="{{activeContacts}}"></div>
           </div>
+          <!-- <progress value="{{currentProgress}}" max="100">{{currentProgress}}%</progress> -->
+        </div>
         {{/if}}
         <div class="dash-nav-right">
             <a href="#" data-action="logout"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> Sign Out</a>

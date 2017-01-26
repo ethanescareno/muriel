@@ -43,9 +43,9 @@
         <tr>
           <td>
             <select type="{{this.type}}" name="importname{{this._id}}" class="typeContactSelect" id="import{{this._id}}" data-id={{this._id}}>
-              <option value="" selected>[Choose One]</option>
-              <option value="companie">Companie</option>
-              <option value="candidate">Candidate</option>
+              <option value="">[Choose One]</option>
+              <option value="companie" {{selected 'companie'}}>Companie</option>
+              <option value="candidate" {{selected 'candidate'}}>Candidate</option>
             </select>
           </td>
           <td>{{this.firstName}}</td>

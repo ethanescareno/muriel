@@ -7,62 +7,60 @@
   <form>
     <div class="row">
         <div class="box col-md-10" id="btnPro">
-          <button type="button" class="btn previewProfile">Preview</button>
           <button type="button" class="btn saveProfile saveClass"> SAVE</button>
+          <button type="button" class="btn previewProfile">Preview</button>
         </div>
     </div>
-   <div class="row">
-     {{#if profilePictureExist}}
-     <div class="box col-md-{{getCurrentsize}}">
-       <img src="{{profilePicture.url}}" alt="Yo" style="width: 25%; height:25%;">
-       <button type="button" name="button" id="editPicture">Edit</button>
-     </div>
-     {{/if}}
-     {{#if showEditProfilePicture}}
-     <div class="box col-md-5">
-       <form class="dropzone" id="dropzoneProfile">
-         <div class="dz-message">
-           <h3>Drag Image here</h3>
-         </div>
-       </form>
-     </div>
-     {{/if}}
-    </div>
     <div class="row">
-      <div class="box col-md-3">
+      <div class="box col-md-10">
+      {{#if profilePictureExist}}
+      <div class="col-md-3">
+        <div class="circular" alt="Yo" style="background:url('{{profilePicture.url}}')"></div>
+        <button type="button" name="button" id="editPicture">Edit</button>
+      </div>
+      {{/if}}
+      {{#if showEditProfilePicture}}
+      <div class="col-md-3">
+        <form class="dropzone" id="dropzoneProfile">
+          <div class="dz-message">
+            <h3 class="gragImg">Drag Image here</h3>
+          </div>
+        </form>
+      </div>
+      {{/if}}
+      <div class="col-md-3">
         <div class="form-group">
           <label for="blurb">Short Bio</label>
           <textarea maxlength="200" id="blurb" style="width:100%; height:150px; border:1px solid #eeeeee;" class="blurbtxt col-md-4" value="{{this.profile.blurb}}" name="profile.blurb">{{this.profile.blurb}}</textarea>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="box col-md-10">Public Contact Info<br><br>
+      <div class="col-md-6">Public Contact Info<br><br>
         <div class="form-group row">
           <label for="p_phone" class="col-xs-2 col-form-label">Phone</label>
-          <div class="col-xs-10">
+          <div class="col-xs-8">
             <input class="form-control p_phone" name="profile.p_phone" type="text" value="{{this.profile.p_phone}}" id="p-phone">
           </div>
         </div>
       <div class="form-group row">
           <label for="p_email" class="col-xs-2 col-form-label">Email</label>
-          <div class="col-xs-10">
+          <div class="col-xs-8">
             <input class="form-control p_email" name="profile.p_email" type="text" value="{{this.profile.p_email}}" id="p-email">
           </div>
         </div>
       <div class="form-group row">
           <label for="p_website" class="col-xs-2 col-form-label">Website</label>
-          <div class="col-xs-10">
+          <div class="col-xs-8">
             <input class="form-control p_website" name="profile.p_website" type="text" value="{{this.profile.p_website}}" id="p-website">
           </div>
         </div>
         <div class="form-group row">
           <label for="p_linkedin" class="col-xs-2 col-form-label">LinkedIn</label>
-          <div class="col-xs-10">
+          <div class="col-xs-8">
             <input class="form-control p_linkedin"  name="profile.p_linkedin" type="text" value="{{this.profile.p_linkedin}}" id="p-linkedin">
           </div>
         </div>
       </div>
+    </div>
     </div>
   <!--BIO-->
     <div class="row">
@@ -151,8 +149,8 @@
      </div>
      <div class="row">
          <div class="box col-md-10">
-           <button type="button" class="btn previewProfile">Preview</button>
            <button type="button" class="btn saveProfile saveClass"> SAVE</button>
+           <button type="button" class="btn previewProfile">Preview</button>
          </div>
      </div>
    </form>

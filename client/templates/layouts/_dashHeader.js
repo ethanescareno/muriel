@@ -17,12 +17,21 @@ Template._dashHeader.helpers({
     }
     return 'None';
   },
-  currentProgress: function() {
+  activeProfile: function() {
     const user = Meteor.user();
     if (user && user.onboard) {
-      const linkedinDone = user.onboard.linkedin;
+      // const linkedinDone = user.onboard.linkedin;
       const profileDone = user.onboard.profileStep;
-      return !profileDone ? 50 : 50
+      return !profileDone ? 'activeProfile' : null;
+    }
+    return 0;
+  },
+  activeContacts: function() {
+    const user = Meteor.user();
+    if (user && user.onboard) {
+      // const linkedinDone = user.onboard.linkedin;
+      const profileDone = user.onboard.profileStep;
+      return profileDone ? 'activeContacts' : null;
     }
     return 0;
   }
