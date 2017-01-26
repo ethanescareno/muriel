@@ -1,4 +1,5 @@
 <template name="contacts">
+    {{> flashMessages}}
   <div class="template-profile">
     <div class="row">
         <div class="box col-md-10">
@@ -41,8 +42,9 @@
       {{#each csvData}}
         <tr>
           <td>
-            <select name="importname{{this._id}}" class="typeContactSelect" id="import{{this._id}}" data-id={{this._id}}>
-              <option value="companie" selected>Companie</option>
+            <select type="{{this.type}}" name="importname{{this._id}}" class="typeContactSelect" id="import{{this._id}}" data-id={{this._id}}>
+              <option value="" selected>[Choose One]</option>
+              <option value="companie">Companie</option>
               <option value="candidate">Candidate</option>
             </select>
           </td>

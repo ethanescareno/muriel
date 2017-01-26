@@ -32,6 +32,10 @@ Template.contacts.events({
             const onboard = user.onboard;
             const linkedinDone = onboard.linkedin;
             if (!linkedinDone) {
+              Blaze.renderWithData(Template.modal, {
+                modalTitle: 'Congratulations you have finished on-boarding.',
+                modalToRenderName: 'longText'
+              }, document.body);
               Meteor.users.update({
                 _id: Meteor.userId()
               }, {
@@ -63,6 +67,7 @@ Template.contacts.events({
     //     CSVData.remove({});
     //   }
     // });
+    FlashMessages.sendInfo("Contacts saved.");
   }
 })
 
