@@ -53,7 +53,7 @@ Template.profile.events({
   },
   'click #editPicture': function(event, templateInstance) {
     templateInstance.showEditImage.set(true);
-    initiDropZone(templateInstance)
+    initiDropZone(templateInstance);
   },
   'click #editRecord': function(event, templateInstance) {
     templateInstance.recordToEditId.set(this._id)
@@ -166,11 +166,12 @@ Template.profile.helpers({
     })
   },
   profilePictureExist: function() {
-    return ProfileImages.find({
+    return !Template.instance().showEditImage.get() && ProfileImages.find({
       'metadata.owner': Meteor.userId()
-    }).count() > 0
+    }).count() > 0;
   },
   showEditProfilePicture: function() {
+    console.log("hia", !Template.instance().showEditImage.get());
     return Template.instance().showEditImage.get() || ProfileImages.find({
       'metadata.owner': Meteor.userId()
     }).count() === 0;
