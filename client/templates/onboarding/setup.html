@@ -3,7 +3,7 @@
     {{> flashMessages}}
         <div style="margin-top:50px;" class="row">
             <div class="col-lg-4">
-                
+
             </div>
             <div class="col-lg-4">
                 <center><div class="setup-title">Welcome to RecruiterQ. Let's get your account set up...</div></center>
@@ -13,32 +13,95 @@
                          <div class="row">
                             <span class="setupTextSm">First Name</span>
                             <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="First Name" id="fName" />
-                               
+
                         </div>
 
                         <div class="row">
                             <span class="setupTextSm">Last Name</span>
                             <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="Last Name" id="lName" />
-                               
+
                         </div>
-                                
+
                         <div class="row">
                             <span class="setupTextSm">Current work situation? Freelancer? Agency? Other?<br> (If agency please provide the company name)</span>
                             <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="Current work status" id="workStatus" />
-                   
+
                         </div>
+
+                        <div class="row">
+                            <span class="setupTextSm">Industry Focus (Choose up to 3)</span><br>
+                            <select id="industries" class="col-sm-12 mt15 setup-input" multiple="multiple">
+                              <option value="Accounting">Accounting</option>
+                              <option value="Admin & Clerical">Admin & Clerical</option>
+                              <option value="Automotive">Automotive</option>
+                              <option value="Banking">Banking</option>
+                              <option value="Biotech">Biotech</option>
+                              <option value="Broadcast - Journalism">Broadcast - Journalism</option>
+                              <option value="Business Development">Business Development</option>
+                              <option value="Construction">Construction</option>
+                              <option value="Consultant">Consultant</option>
+                              <option value="Customer Service">Customer Service</option>
+                              <option value="Design">Design</option>
+                              <option value="Distribution - Shipping">Distribution - Shipping</option>
+                              <option value="Education - Teaching">Education - Teaching</option>
+                              <option value="Engineering">Engineering</option>
+                              <option value="Entry Level - New Grad">Entry Level - New Grad</option>
+                              <option value="Executive">Executive</option>
+                              <option value="Facilities">Facilities</option>
+                              <option value="Finance">Finance</option>
+                              <option value="Franchise">Franchise</option>
+                              <option value="General Business">General Business</option>
+                              <option value="General Labor">General Labor</option>
+                              <option value="Government">Government</option>
+                              <option value="Grocery">Grocery</option>
+                              <option value="Health Care">Health Care</option>
+                              <option value="Hotel - Hospitality">Hotel - Hospitality</option>
+                              <option value="Human Resources">Human Resources</option>
+                              <option value="Information Technology">Information Technology</option>
+                              <option value="Installation - Maint - Repair">Installation - Maint - Repair</option>
+                              <option value="Insurance">Insurance</option>
+                              <option value="Inventory">Inventory</option>
+                              <option value="Legal">Legal</option>
+                              <option value="Legal Admin">Legal Admin</option>
+                              <option value="Management">Management</option>
+                              <option value="Manufacturing">Manufacturing</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Media - Journalism - Newspaper">Media - Journalism - Newspaper</option>
+                              <option value="Nonprofit - Social Services">Nonprofit - Social Services</option>
+                              <option value="Nurse">Nurse</option>
+                              <option value="Pharmaceutical">Pharmaceutical</option>
+                              <option value="Professional Services">Professional Services</option>
+                              <option value="Purchasing - Procurement">Purchasing - Procurement</option>
+                              <option value="QA - Quality Control">QA - Quality Control</option>
+                              <option value="Real Estate">Real Estate</option>
+                              <option value="Research">Research</option>
+                              <option value="Restaurant - Food Service">Restaurant - Food Service</option>
+                              <option value="Retail">Retail</option>
+                              <option value="Sales">Sales</option>
+                              <option value="Science">Science</option>
+                              <option value="Skilled Labor - Trades">Skilled Labor - Trades</option>
+                              <option value="Strategy - Planning">Strategy - Planning</option>
+                              <option value="Supply Chain">Supply Chain</option>
+                              <option value="Telecommunications">Telecommunications</option>
+                              <option value="Training">Training</option>
+                              <option value="Transportation">Transportation</option>
+                              <option value="Warehouse">Warehouse</option>
+                            </select>
+
+                        </div>
+
                         <div class="row">
                             <span class="setupTextSm">Zip</span>
                             <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="Zip" id="zip" />
-                  
+
                         </div>
                         <div class="row">
                             <span class="setupTextSm">Phone</span>
                             <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="555-555-5555" id="phone" />
-                  
+
                         </div>
                         <div class="row">
-                   
+
                             <div class="col-sm-12 mt15">
                                 <p>
                                     <!-- <center>
@@ -47,16 +110,16 @@
                                     </center> -->
                                 </p>
                             </div>
-                        </div>    
+                        </div>
                         <div class="row">
-                       
+
                             <div class="col-sm-12 mt15">
                                 <center>
                                     <div class="btn setUpSubmit" id="toDash"> TO THE DASHBOARD&nbsp;&nbsp;&nbsp;<i class="fa fa-tachometer fa-lg" aria-hidden="true"></i></div>
                                 </center>
                             </div>
                         </div>
-                    
+
                     </div>
                 </div>
             </div>
@@ -64,5 +127,5 @@
             </div>
         </div>
     </div>
-    
+
 </template>

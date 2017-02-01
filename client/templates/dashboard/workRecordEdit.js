@@ -5,19 +5,40 @@ Template.workRecordEdit.events({
     template.data.data.templateParent.recordToEditId.set(null);
   },
   'documentSubmit': function (event, template, doc) {
-      doc.isNew = false
-      delete doc._id
-      Records.update({
-        _id: template.data.data._id
+    event.preventDefault();
+    const userId = Meteor.userId();
+    const userRecords = Meteor.user() && Meteor.user().profile.records;
+    if (!doc.isNew) {
+      const documentId = doc._id;
+      delete doc._id;
+      Records.update(
+        documentId, {
+          $set: doc
+        }
+      );
+      Meteor.users.update({
+        _id: userId
       }, {
-        $set: doc
+        $set: {'profile.records': Records.find().fetch()}
       }, function(error, result) {
-        if (error) {
-          alert(error)
-        } else {
+        if (!error) {
           template.data.data.templateParent.recordToEditId.set(null);
         }
-      })
+      });
+    } else {
+      doc.isNew = false;
+      Records.remove(doc._id);
+      Meteor.users.update({
+        _id: userId
+      }, {
+        $push: {'profile.records': doc}
+      }, function(error, result) {
+        if (!error) {
+          Records.insert(doc);
+          template.data.data.templateParent.recordToEditId.set(null);
+        }
+      });
+    }
    },
   'click #delete': function(event, templateInstance) {
     Records.remove({
@@ -36,7 +57,8 @@ Template.workRecordEdit.helpers({
 
 Template.workRecordEdit.onRendered(function() {
   var self = this;
-  var form = Forms.instance()
+  console.log("este es el edit",self.data);
+  var form = Forms.instance();
   form.doc(Records.findOne({
     _id: self.data.data._id
   }))

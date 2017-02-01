@@ -20,46 +20,84 @@
     </div>
     {{#if showTabs}}
     <div class="row">
-  {{#basicTabs name="" tabs=tabs activeTab=activeTab}}
-    {{#tabContent slug="companies"}}
-    Companies
-    {{/tabContent}}
+      <div class="col-md-10">
+        {{#basicTabs name="" tabs=tabs activeTab=activeTab}}
+          {{#tabContent slug="companies"}}
+          Companies
+          <table style="width:100%">
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Company Name</th>
+              <th>Title</th>
+              <th>Email</th>
+            </tr>
+            {{#each companies}}
+              <tr>
+                <td>{{this.firstName}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.company}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.email}}</td>
+              </tr>
+            {{/each}}
+          </table>
+          {{/tabContent}}
 
-    {{#tabContent slug="candidates"}}
-    Candidates
-    {{/tabContent}}
+          {{#tabContent slug="candidates"}}
+          Candidates
+          <table style="width:100%">
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Company Name</th>
+              <th>Title</th>
+              <th>Email</th>
+            </tr>
+            {{#each candidates}}
+              <tr>
+                <td>{{this.firstName}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.company}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.email}}</td>
+              </tr>
+            {{/each}}
+          </table>
+          {{/tabContent}}
 
-    {{#tabContent slug="unfiltered"}}
-    <table style="width:100%">
-      <tr>
-        <th>Type</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Company Name</th>
-        <th>Title</th>
-        <th>Email</th>
-      </tr>
-      {{#each csvData}}
-        <tr>
-          <td>
-            <select type="{{this.type}}" name="importname{{this._id}}" class="typeContactSelect" id="import{{this._id}}" data-id={{this._id}}>
-              <option value="">[Choose One]</option>
-              <option value="companie" {{selected 'companie'}}>Companie</option>
-              <option value="candidate" {{selected 'candidate'}}>Candidate</option>
-            </select>
-          </td>
-          <td>{{this.firstName}}</td>
-          <td>{{this.lastName}}</td>
-          <td>{{this.company}}</td>
-          <td>{{this.title}}</td>
-          <td>{{this.email}}</td>
-        </tr>
-      {{/each}}
-    </table>
-  <button type="button" class="btn" id="saveData">Save Contacts</button>
-    {{/tabContent}}
+          {{#tabContent slug="unfiltered"}}
+          <table style="width:100%">
+            <tr>
+              <th>Type</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Company Name</th>
+              <th>Title</th>
+              <th>Email</th>
+            </tr>
+            {{#each csvData}}
+              <tr>
+                <td>
+                  <select type="{{this.type}}" name="importname{{this._id}}" class="typeContactSelect" id="import{{this._id}}" data-id={{this._id}}>
+                    <option value="">[Choose One]</option>
+                    <option value="company" {{selected 'company'}}>Company</option>
+                    <option value="candidate" {{selected 'candidate'}}>Candidate</option>
+                  </select>
+                </td>
+                <td>{{this.firstName}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.company}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.email}}</td>
+              </tr>
+            {{/each}}
+          </table>
+        <!-- <button type="button" class="btn" id="saveData">Save Contacts</button> -->
+          {{/tabContent}}
 
-  {{/basicTabs}}
+        {{/basicTabs}}
+      </div>
     </div>
     {{/if}}
     {{#if csvData}}

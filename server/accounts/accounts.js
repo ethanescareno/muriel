@@ -6,6 +6,7 @@ Accounts.onCreateUser(function(options, user) {
    user.profile.firstName = options.firstName;
    user.profile.lastName = options.lastName;
    user.profile.workStatus = options.workStatus;
+   user.profile.industries = options.industries;
    user.profile.zip = options.zip;
    user.profile.phone = options.phone;
    user.profile.createAcct1 = options.createAcct1;

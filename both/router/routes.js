@@ -41,6 +41,7 @@ Router.route('/preview/:firstName-:lastName-recruiter-q-:userId', {
   controller: 'PreviewProfileController',
   waitOn: function() {
     Meteor.subscribe('userUnique', this.params.userId);
+    Meteor.subscribe('userData');
   },
 });
 

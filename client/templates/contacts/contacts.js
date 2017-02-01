@@ -27,6 +27,10 @@ Template.contacts.events({
       $set: {
         type: current.val()
       }
+    }, function(e,r){
+      if (!e) {
+        console.log("si guardo");
+      }
     });
   },
   'click #saveData': function() {
@@ -106,10 +110,16 @@ Template.contacts.helpers({
   csvData: function () {
       return Template.instance().pagination.getPage();
   },
+  candidates: function () {
+      return Template.instance().paginationCandidates.getPage();
+  },
+  companies: function () {
+      return Template.instance().paginationCompanies.getPage();
+  },
   selected: function (option) {
-    return this.type === option ? 'selected' : '';
-  }
-})
+      return this.type === option ? 'selected' : '';
+    }
+  })
 
 var readFile = function(file, callback) {
   Papa.parse(file, {
@@ -137,11 +147,27 @@ var uploadCSV = function(file) {
             lastName: contact[3] || 'No Last Name',
             email: contact[5] || 'No Email',
             company: contact[29] || 'No Company',
-            type: 'companie',
+            type: 'company',
             owner: Meteor.userId()
           })
         });
         Dropzone.forElement("#dropzoneDiv").removeAllFiles(true);
+        const user = Meteor.user();
+        const onboard = user.onboard;
+        const linkedinDone = onboard.linkedin;
+        if (!linkedinDone) {
+          Blaze.renderWithData(Template.modal, {
+            modalTitle: 'Congratulations you have finished on-boarding.',
+            modalToRenderName: 'longText'
+          }, document.body);
+          Meteor.users.update({
+            _id: Meteor.userId()
+          }, {
+            $set: {
+              'onboard.linkedin': true
+            }
+          })
+        }
       }
     })
   } else {
@@ -198,4 +224,22 @@ Template.contacts.onCreated(function () {
         },
         perPage: 30
     });
+  this.paginationCandidates = new Meteor.Pagination(CSVData, {
+        filters: {
+          type: 'candidate'
+        },
+        sort: {
+            _id: -1
+        },
+        perPage: 30,
+    });
+    this.paginationCompanies = new Meteor.Pagination(CSVData, {
+          filters: {
+            type: 'company'
+          },
+          sort: {
+              _id: -1
+          },
+          perPage: 30,
+      });
 });

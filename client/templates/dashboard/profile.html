@@ -75,15 +75,16 @@
      <div class="row">
         <div class="box col-md-10">Work RECORD <button type="button" id="addRecord" name="button"><i class="fa fa-plus"></i>Add Record</button></div>
      </div>
-     <div class="row">
-       {{#each records}}<br>
+     <div class="row profile-table">
+       <div class="col-md-10">
+       {{#each records}}
         {{#if showEditRecord}}
-        {{> workRecordEdit data=recordData}}
+        {{> workRecordEdit data=recordData}}<br>
         {{/if}}
        {{/each}}
        {{#if recordsExists}}
-       <table class="col-md-10 record-table">
-         <tr>
+       <!-- <table class="col-md-10 record-table"> -->
+         <!-- <tr>
            <th>Company Name</th>
            <th>Position</th>
            <th>Year Start</th>
@@ -91,9 +92,54 @@
            <th>Description</th>
            <th class="t-btn">Edit</th>
            <th class="t-btn">Delete</th>
-         </tr>
+         </tr> -->
+         <div class="row">
+           <div class="col-md-3">
+             <b>Company Name</b><br>
+           </div>
+           <div class="col-md-3">
+             <b>Position</b><br>
+           </div>
+           <div class="col-md-2">
+             <b>Year Start</b><br>
+           </div>
+           <div class="col-md-2">
+             <b>Year End</b><br>
+           </div>
+           <div class="col-md-1">
+             <b>Edit</b><br>
+           </div>
+           <div class="col-md-1">
+             <b>Delete</b><br>
+           </div>
+         </div>
+
          {{#each records}}
-         <tr>
+         <div class="row">
+           <div class="col-md-3">
+             {{this.companyName}}
+           </div>
+           <div class="col-md-3">
+             {{this.position}}
+           </div>
+           <div class="col-md-2">
+             {{this.yearStart}}
+           </div>
+           <div class="col-md-2">
+             {{this.yearEnd}}
+           </div>
+           <div class="col-md-1">
+              <i class="fa fa-pencil" id="editRecord"></i>
+           </div>
+           <div class="col-md-1">
+             <i class="fa fa-trash" id="deleteRecord"></i>
+           </div>
+           <div class="col-md-12">
+             <b>Description</b><br>
+             {{this.dutiesDescription}}
+           </div>
+         </div>
+         <!-- <tr>
            <td>{{this.companyName}}</td>
            <td>{{this.position}}</td>
            <td>{{this.yearStart}}</td>
@@ -105,47 +151,69 @@
            <td>
              <i class="fa fa-trash" id="deleteRecord"></i>
            </td>
-         </tr>
+         </tr> -->
          {{/each}}
-       </table>
+       <!-- </table> -->
        {{/if}}
+      </div>
      </div>
   <!--EDUCATION, TRAINIING & CERTS-->
      <div class="row">
         <div class="box col-md-10">Education <button type="button" id="addEducation" name="button"><i class="fa fa-plus"></i>Add Education</button></div>
      </div>
-     <div class="row">
-       <!-- {{#each education}}<br>
+     <div class="row profile-table">
+       <div class="col-md-10">
+       {{#each education}}
         {{#if showEditEducation}}
-        {{> educationRecordEdit data=educationData}}
+        {{> educationRecordEdit data=educationData}}<br>
         {{/if}}
-       {{/each}} -->
+       {{/each}}
        {{#if educationExists}}
-       <table class="col-md-10 record-table">
-         <tr>
-           <th>Institution Name</th>
-           <th>Course of Study</th>
-           <th>Cert Earned</th>
-           <th>Year Ended</th>
-           <th class="t-btn">Edit</th>
-           <th class="t-btn">Delete</th>
-         </tr>
+       <div class="row">
+         <div class="col-md-3">
+           <b>Institution Name</b><br>
+         </div>
+         <div class="col-md-3">
+           <b>Course of Study</b><br>
+         </div>
+         <div class="col-md-2">
+           <b>Cert Earned</b><br>
+         </div>
+         <div class="col-md-2">
+           <b>Year Earned</b><br>
+         </div>
+         <div class="col-md-1">
+           <b>Edit</b><br>
+         </div>
+         <div class="col-md-1">
+           <b>Delete</b><br>
+         </div>
+       </div>
          {{#each education}}
-         <tr>
-           <td>{{this.institutionName}}</td>
-           <td>{{this.courseOfStudy}}</td>
-           <td>{{this.certEarned}}</td>
-           <td>{{this.yearEarned}}</td>
-           <td>
-             <i class="fa fa-pencil" id="editEducation"></i>
-           </td>
-           <td>
+         <div class="row">
+           <div class="col-md-3">
+             {{this.institutionName}}
+           </div>
+           <div class="col-md-3">
+             {{this.courseOfStudy}}
+           </div>
+           <div class="col-md-2">
+             {{this.certEarned}}
+           </div>
+           <div class="col-md-2">
+             {{this.yearEarned}}
+           </div>
+           <div class="col-md-1">
+              <i class="fa fa-pencil" id="editEducation"></i>
+           </div>
+           <div class="col-md-1">
              <i class="fa fa-trash" id="deleteEducation"></i>
-           </td>
-         </tr>
+           </div>
+         </div>
          {{/each}}
-       </table>
+       <!-- </table> -->
        {{/if}}
+      </div>
      </div>
      <div class="row">
          <div class="box col-md-10">

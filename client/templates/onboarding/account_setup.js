@@ -12,6 +12,7 @@ Template.account_setup.events({
         var workSitch = $("#workStatus").val();
         var zip = $("#zip").val();
         var phone = $("#phone").val();
+        const industries = $('#industries').val();
 
         if (!firstName){
             return FlashMessages.sendWarning("Please provide input for first name");
@@ -30,9 +31,24 @@ Template.account_setup.events({
             return FlashMessages.sendWarning("Please provide input for phone");
         }
 
-       Meteor.users.update(userId, { $set: {"profile.firstName": firstName, "profile.lastName": lastName, "profile.workStatus": workSitch, "profile.zip": zip, "profile.phone": phone, "profile.createAcct1": true} });
+       Meteor.users.update(userId, { $set: {"profile.firstName": firstName,
+        "profile.lastName": lastName,
+        "profile.workStatus": workSitch,
+        "profile.zip": zip,
+        "profile.phone": phone,
+        "profile.createAcct1": true,
+        "profile.industries": industries
+      } });
 
        Router.go("/dashboard/home");
 
     }
 });
+
+
+Template.account_setup.onRendered(function(){
+  $('#industries').multiselect({
+    buttonWidth: '100%',
+    maxHeight: 200
+  });
+})

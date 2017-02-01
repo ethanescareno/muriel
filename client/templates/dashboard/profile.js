@@ -64,16 +64,18 @@ Template.profile.events({
   'click #editEducation': function(event, templateInstance) {
     templateInstance.educationToEditId.set(this._id)
   },
-  'click #deleteRecord': function(event, templateInstance) {
+  'click #deleteEducation': function(event, templateInstance) {
     Education.remove({_id: this._id})
   },
   'click #addRecord': function(event, templateInstance) {
+    event.preventDefault();
     Records.insert({
       isNew: true,
       type: 'record'
     })
   },
   'click #addEducation': function(event, templateInstance) {
+    event.preventDefault();
     Education.insert({
       isNew: true,
       type: 'education'
@@ -93,7 +95,8 @@ Template.profile.events({
         p_linkedin: $('#p-linkedin').val(),
         mresume: $('#mResume').val(),
         records: Records.find().fetch(),
-        education: Education.find().fetch()
+        education: Education.find().fetch(),
+        industries: user.profile && user.profile.industries
       },
       onboard: {
         modalDashboard: Meteor.user().onboard.modalDashboard || false,
@@ -143,6 +146,9 @@ Template.profile.helpers({
   educationExists:function() {
     return Education.find().count();
   },
+  showNewRecord: function() {
+    return this.newRecord;
+  },
   showEditRecord: function() {
     return this.isNew || Template.instance().recordToEditId.get() === this._id;
   },
@@ -171,7 +177,6 @@ Template.profile.helpers({
     }).count() > 0;
   },
   showEditProfilePicture: function() {
-    console.log("hia", !Template.instance().showEditImage.get());
     return Template.instance().showEditImage.get() || ProfileImages.find({
       'metadata.owner': Meteor.userId()
     }).count() === 0;
@@ -189,7 +194,7 @@ Template.profile.onRendered(function() {
     const user = Meteor.user() && Meteor.user().profile
     if (user && user.records && user.records.length > 0 && !self.inserted.get()) {
       user.records.forEach(function(record) {
-        // delete record._id;
+        delete record._id;
         Records.insert(record)
       });
       self.inserted.set(true);
@@ -197,7 +202,7 @@ Template.profile.onRendered(function() {
 
     if (user && user.education && user.education.length > 0 && !self.educationInserted.get()) {
       user.education.forEach(function(education) {
-        // delete education._id;
+        delete education._id;
         Education.insert(education)
       });
       self.educationInserted.set(true);

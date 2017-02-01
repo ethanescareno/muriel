@@ -8,6 +8,9 @@ Template._dashHeader.helpers({
     }
     return true;
   },
+  showProfilePreview: function() {
+    return Router.current().route.getName() === 'previewProfile' ? true : false;
+  },
   currentStep: function() {
     const user = Meteor.user();
     if (user && user.onboard) {
@@ -34,5 +37,14 @@ Template._dashHeader.helpers({
       return profileDone ? 'activeContacts' : null;
     }
     return 0;
+  }
+})
+
+Template._dashHeader.events({
+  'click #lt': function(){
+    Blaze.renderWithData(Template.modal, {
+      modalTitle: 'This is contact form',
+      modalToRenderName: 'longText'
+    }, document.body);
   }
 })
