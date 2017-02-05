@@ -21,6 +21,18 @@
     {{#if showTabs}}
     <div class="row">
       <div class="col-md-10">
+        {{#each companies}}
+         {{#if showContactEdit}}
+         {{> contactEdit data=contactData}}<br>
+         {{/if}}
+        {{/each}}
+
+        {{#each candidates}}
+         {{#if showContactEdit}}
+         {{> contactEdit data=contactData}}<br>
+         {{/if}}
+        {{/each}}
+
         {{#basicTabs name="" tabs=tabs activeTab=activeTab}}
           {{#tabContent slug="companies"}}
           Companies
@@ -31,6 +43,8 @@
               <th>Company Name</th>
               <th>Title</th>
               <th>Email</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
             {{#each companies}}
               <tr>
@@ -39,9 +53,12 @@
                 <td>{{this.company}}</td>
                 <td>{{this.title}}</td>
                 <td>{{this.email}}</td>
+                <td><i class="fa fa-pencil" id="editCompany"></i></td>
+                <td><i class="fa fa-trash" id="deleteCompany"></i></td>
               </tr>
             {{/each}}
           </table>
+          {{> defaultBootstrapPaginator pagination=templatePaginationCompanies limit="30" containerClass="text-center" onClick=clickEvent}}
           {{/tabContent}}
 
           {{#tabContent slug="candidates"}}
@@ -53,6 +70,8 @@
               <th>Company Name</th>
               <th>Title</th>
               <th>Email</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
             {{#each candidates}}
               <tr>
@@ -61,9 +80,12 @@
                 <td>{{this.company}}</td>
                 <td>{{this.title}}</td>
                 <td>{{this.email}}</td>
+                <td><i class="fa fa-pencil" id="editCandidate"></i></td>
+                <td><i class="fa fa-trash" id="deleteCandidate"></i></td>
               </tr>
             {{/each}}
           </table>
+          {{> defaultBootstrapPaginator pagination=templatePaginationCandidates limit="30" containerClass="text-center" onClick=clickEvent}}
           {{/tabContent}}
 
           {{#tabContent slug="unfiltered"}}
@@ -80,7 +102,7 @@
               <tr>
                 <td>
                   <select type="{{this.type}}" name="importname{{this._id}}" class="typeContactSelect" id="import{{this._id}}" data-id={{this._id}}>
-                    <option value="">[Choose One]</option>
+                    <option value="" selected>Choose One</option>
                     <option value="company" {{selected 'company'}}>Company</option>
                     <option value="candidate" {{selected 'candidate'}}>Candidate</option>
                   </select>
@@ -93,6 +115,8 @@
               </tr>
             {{/each}}
           </table>
+          {{> defaultBootstrapPaginator pagination=templatePagination limit="30" containerClass="text-center" onClick=clickEvent}}
+
         <!-- <button type="button" class="btn" id="saveData">Save Contacts</button> -->
           {{/tabContent}}
 
@@ -100,8 +124,8 @@
       </div>
     </div>
     {{/if}}
-    {{#if csvData}}
+    <!-- {{#if csvData}}
       {{> defaultBootstrapPaginator pagination=templatePagination limit="50" containerClass="text-center" onClick=clickEvent}}
-    {{/if}}
+    {{/if}} -->
   </div>
 </template>

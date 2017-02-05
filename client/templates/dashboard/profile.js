@@ -17,6 +17,7 @@ function initiDropZone(tmpl) {
       url: 'none',
       maxFiles: 1,
       accept: function(file, done) {
+        tmpl.spinner.set(true);
         var fsFile = new FS.File(file);
         fsFile.metadata = {
           owner: Meteor.userId()
@@ -28,14 +29,17 @@ function initiDropZone(tmpl) {
         if (queryPicture) {
           ProfileImages.remove({_id: queryPicture._id})
         }
-        ProfileImages.insert(fsFile, function (error) {
-          if (error) {
-            alert(error.message)
-          } else {
-            tmpl.showEditImage.set(false);
-            Dropzone.forElement("#dropzoneProfile").removeAllFiles(true);
-          }
-        });
+        Dropzone.forElement("#dropzoneProfile").removeAllFiles(true);
+        Meteor.setTimeout(function(){
+          ProfileImages.insert(fsFile, function (error) {
+            if (error) {
+              alert(error.message)
+            } else {
+              tmpl.showEditImage.set(false);
+              tmpl.spinner.set(false);
+            }
+          });
+        },2000)
       }
     });
   }, 0)
@@ -44,7 +48,7 @@ function initiDropZone(tmpl) {
 Template.profile.events({
   'click .previewProfile': function() {
     const user = Meteor.user();
-    const newTab = Router.url('previewProfile', {
+    const newTab = Router.url('recruiter-reviews', {
       firstName: user.profile && user.profile.firstName || 'nofirstname',
       lastName: user.profile && user.profile.lastName || 'nolastName',
       userId: user._id
@@ -88,6 +92,9 @@ Template.profile.events({
       profile: {
         firstName: user.profile && user.profile.firstName,
         lastName: user.profile && user.profile.lastName,
+        workStatus:user.profile && user.profile.workStatus,
+        zip:user.profile && user.profile.zip,
+        phone:user.profile && user.profile.phone,
         blurb: $(".blurbtxt").val(),
         p_phone: $('#p-phone').val(),
         p_email: $('#p-email').val(),
@@ -96,7 +103,8 @@ Template.profile.events({
         mresume: $('#mResume').val(),
         records: Records.find().fetch(),
         education: Education.find().fetch(),
-        industries: user.profile && user.profile.industries
+        industries: user.profile && user.profile.industries,
+        createAcct1: user.profile && user.profile.createAcct1
       },
       onboard: {
         modalDashboard: Meteor.user().onboard.modalDashboard || false,
@@ -131,8 +139,23 @@ Template.profile.events({
 });
 
 Template.profile.helpers({
+  onboardingComplete: function() {
+    const user = Meteor.user();
+    if (!user) {
+      return;
+    }
+    const onboard = user && user.onboard;
+
+    if (!onboard) {
+      return;
+    }
+    const profileDone = onboard.profileStep;
+    const textDone = onboard.modalDashboard;
+    const linkedinDone = onboard.linkedin;
+    return profileDone && textDone && linkedinDone;
+  },
   "userinfo": function() {
-      return Meteor.users.findOne() || {};
+      return Meteor.user() || {};
   },
   records: function() {
     return Records.find();
@@ -150,6 +173,7 @@ Template.profile.helpers({
     return this.newRecord;
   },
   showEditRecord: function() {
+    console.log(this.isNew, Template.instance().recordToEditId.get() === this._id, this._id);
     return this.isNew || Template.instance().recordToEditId.get() === this._id;
   },
   showEditEducation: function() {
@@ -183,16 +207,21 @@ Template.profile.helpers({
   },
   getCurrentsize: function() {
     return Template.instance().showEditImage.get() ? 5 : 10;
+  },
+  spinner: function() {
+    return Template.instance().spinner.get();
   }
 });
 
 Template.profile.onRendered(function() {
   var self = this;
-
-  initiDropZone(self)
+  initiDropZone(self);
+  Records.remove({});
+  Education.remove({});
   this.autorun(function() {
     const user = Meteor.user() && Meteor.user().profile
-    if (user && user.records && user.records.length > 0 && !self.inserted.get()) {
+    if (user && user.records && user.records.length > 0 && !self.inserted.get()
+      && Records.find().count() === 0) {
       user.records.forEach(function(record) {
         delete record._id;
         Records.insert(record)
@@ -200,7 +229,8 @@ Template.profile.onRendered(function() {
       self.inserted.set(true);
     }
 
-    if (user && user.education && user.education.length > 0 && !self.educationInserted.get()) {
+    if (user && user.education && user.education.length > 0 && !self.educationInserted.get()
+      && Education.find().count() === 0) {
       user.education.forEach(function(education) {
         delete education._id;
         Education.insert(education)
@@ -240,4 +270,5 @@ Template.profile.onCreated(function() {
   self.inserted = new ReactiveVar(false)
   self.showEditImage = new ReactiveVar(false)
   self.educationInserted = new ReactiveVar(false)
+  self.spinner = new ReactiveVar(false)
 })

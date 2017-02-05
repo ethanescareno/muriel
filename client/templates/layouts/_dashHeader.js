@@ -9,7 +9,7 @@ Template._dashHeader.helpers({
     return true;
   },
   showProfilePreview: function() {
-    return Router.current().route.getName() === 'previewProfile' ? true : false;
+    return Router.current().route.getName() === 'recruiter-reviews' ? true : false;
   },
   currentStep: function() {
     const user = Meteor.user();

@@ -1,18 +1,19 @@
 <template name="dashLayout">
 {{> _dashHeader}}
     <div id="wrapper">
+      {{#if showProfilePreview}}
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 {{#if onboardingComplete}}
-                <li class="{{isActiveRoute 'dashhome'}}">
+                <li class="">
                     <a href="{{ pathFor 'dashhome' }}"><i class="fa fa-tachometer fa-lg {{isActiveRoute regex='dashhome'}}" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
                 </li>
                 {{/if}}
-                <li class="{{isActiveRoute 'profile'}}">
+                <li class="">
                     <a href="{{ pathFor 'profile' }}"><i class="fa fa-id-card fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Profile</a>
                 </li>
-                 <li class="{{isActiveRoute 'contacts'}}">
+                 <li class="">
                     <a href="" id='contacts' class="activeUser"><i class="fa fa-database fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Contacts</a>
                 </li>
                 {{#if onboardingComplete}}
@@ -33,7 +34,7 @@
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
-
+        {{/if}}
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container">

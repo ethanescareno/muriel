@@ -3,10 +3,7 @@ Template.account_setup.events({
         //onChangesetupAccount(evt, Meteor.userId());
     },
     "click .setUpSubmit": function(e) {
-
-
         userId = Meteor.userId();
-
         var firstName = $("#fName").val();
         var lastName = $("#lName").val();
         var workSitch = $("#workStatus").val();
@@ -31,7 +28,8 @@ Template.account_setup.events({
             return FlashMessages.sendWarning("Please provide input for phone");
         }
 
-       Meteor.users.update(userId, { $set: {"profile.firstName": firstName,
+       Meteor.users.update(userId, { $set: {
+        "profile.firstName": firstName,
         "profile.lastName": lastName,
         "profile.workStatus": workSitch,
         "profile.zip": zip,

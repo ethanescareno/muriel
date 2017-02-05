@@ -1,8 +1,8 @@
-Forms.mixin(Template.workRecordEdit);
+Forms.mixin(Template.contactEdit);
 
-Template.workRecordEdit.events({
+Template.contactEdit.events({
   'click #cancelEdit': function(event, template) {
-    template.data.data.templateParent.recordToEditId.set(null);
+    template.data.data.templateParent.contactToEditId.set(null);
   },
   'documentSubmit': function (event, template, doc) {
     console.log("entro", doc);
@@ -13,7 +13,7 @@ Template.workRecordEdit.events({
     delete doc._id;
     if (!doc.isNew) {
       console.log("edit");
-      Records.update(
+      CSVData.update(
         documentId, {
           $set: doc
         }
@@ -21,10 +21,10 @@ Template.workRecordEdit.events({
       Meteor.users.update({
         _id: userId
       }, {
-        $set: {'profile.records': Records.find().fetch()}
+        $set: {'profile.csvData': CSVData.find().fetch()}
       }, function(error, result) {
         if (!error) {
-          template.data.data.templateParent.recordToEditId.set(null);
+          template.data.data.templateParent.contactToEditId.set(null);
         }
       });
     } else {
@@ -33,39 +33,39 @@ Template.workRecordEdit.events({
       Meteor.users.update({
         _id: userId
       }, {
-        $push: {'profile.records': doc}
+        $push: {'profile.csvData': doc}
       }, function(error, result) {
         if (!error) {
-          Records.update(
+          CSVData.update(
             documentId, {
               $set: doc
             }
           );
-          template.data.data.templateParent.recordToEditId.set(null);
+          template.data.data.templateParent.contactToEditId.set(null);
         }
       });
     }
    },
   'click #delete': function(event, templateInstance) {
-    Records.remove({
+    CSVData.remove({
       _id: templateInstance.data._id
     });
-    templateInstance.data.data.templateParent.recordToEditId.set(null);
+    templateInstance.data.data.templateParent.contactToEditId.set(null);
   },
 })
 
 
-Template.workRecordEdit.helpers({
-  record: function() {
+Template.contactEdit.helpers({
+  CSVData: function() {
     return Template.instance().data.data;
   }
 })
 
-Template.workRecordEdit.onRendered(function() {
+Template.contactEdit.onRendered(function() {
   var self = this;
   // console.log("este es el edit",self.data);
   var form = Forms.instance();
-  form.doc(Records.findOne({
+  form.doc(CSVData.findOne({
     _id: self.data.data._id
   }))
 })

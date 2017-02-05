@@ -2,16 +2,16 @@
   {{#with userData}}
     <div class="container">
       <div class="row">
-        <div class="col-md-4" style="border-right: 3px solid rgba(128, 128, 128, 0.32)">
+        <div class="col-md-5" style="border-right: 3px solid rgba(128, 128, 128, 0.32)">
           <div class="row">
           {{#if profilePictureExist}}
           <div class="col-md-4">
             <div class="circular-preview" alt="Yo" style="background:url('{{profilePicture.url}}');"></div>
           </div>
           {{/if}}
-          <div class="col-md-8">
+          <div class="col-md-8 name">
             <h3>{{profile.firstName}} {{profile.lastName}}</h3>
-            <p>{{profile.blurb}}</p>
+            <p class="blurb">{{profile.blurb}}</p>
           </div>
         </div>
         <div class="row col-md-12">

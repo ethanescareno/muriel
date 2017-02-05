@@ -33,6 +33,20 @@ Template.contacts.events({
       }
     });
   },
+  'click #editCompany': function(event, templateInstance) {
+    console.log('si jala');
+    templateInstance.contactToEditId.set(this._id)
+  },
+  'click #editCandidate': function(event, templateInstance) {
+    console.log('si jala');
+    templateInstance.contactToEditId.set(this._id)
+  },
+  'click #deleteCompany': function(event, templateInstance) {
+    CSVData.remove({_id: this._id})
+  },
+  'click #deleteCandidate': function(event, templateInstance) {
+    CSVData.remove({_id: this._id})
+  },
   'click #saveData': function() {
     const contacts = CSVData.find().fetch();
     contacts.forEach(function(cont) {
@@ -98,6 +112,15 @@ Template.contacts.helpers({
   // csvData: function() {
   //   return CSVData.find()
   // },
+  showContactEdit: function() {
+    console.log(this.isNew, Template.instance().contactToEditId.get() === this._id, this._id);
+    return this.isNew || Template.instance().contactToEditId.get() === this._id;
+  },
+  contactData: function() {
+    var data = this;
+    data.templateParent = Template.instance();
+    return data;
+  },
   showTabs: function() {
     return CSVData.find().count() > 0
   },
@@ -107,6 +130,12 @@ Template.contacts.helpers({
   templatePagination: function () {
       return Template.instance().pagination;
   },
+  templatePaginationCandidates: function () {
+      return Template.instance().paginationCandidates;
+  },
+  templatePaginationCompanies: function () {
+      return Template.instance().paginationCompanies;
+  },
   csvData: function () {
       return Template.instance().pagination.getPage();
   },
@@ -114,6 +143,9 @@ Template.contacts.helpers({
       return Template.instance().paginationCandidates.getPage();
   },
   companies: function () {
+      return Template.instance().paginationCompanies.getPage();
+  },
+  unfiltered: function () {
       return Template.instance().paginationCompanies.getPage();
   },
   selected: function (option) {
@@ -142,12 +174,12 @@ var uploadCSV = function(file) {
         data.splice(0, 1);
         data.forEach(function(contact) {
           CSVData.insert({
-            title: contact[0] || 'No Title',
+            title: contact[31] || 'No Title',
             firstName: contact[1] || 'No First Name',
             lastName: contact[3] || 'No Last Name',
             email: contact[5] || 'No Email',
             company: contact[29] || 'No Company',
-            type: 'company',
+            type: '',
             owner: Meteor.userId()
           })
         });
@@ -216,9 +248,13 @@ Template.contacts.onRendered(function () {
 
 Template.contacts.onCreated(function () {
   var self = this;
+  self.contactToEditId = new ReactiveVar(null)
   self.activeTab = new ReactiveVar(null)
   self.csvData = new ReactiveVar(null)
   this.pagination = new Meteor.Pagination(CSVData, {
+        filters: {
+          type: { $nin: ['company', 'candidate']}
+        },
         sort: {
             _id: -1
         },

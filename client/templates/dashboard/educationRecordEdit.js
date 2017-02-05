@@ -34,7 +34,11 @@ Template.educationRecordEdit.events({
         $push: {'profile.education': doc}
       }, function(error, result) {
         if (!error) {
-          Education.insert(doc);
+          Education.update(
+            documentId, {
+              $set: doc
+            }
+          );
           template.data.data.templateParent.educationToEditId.set(null);
         }
       });

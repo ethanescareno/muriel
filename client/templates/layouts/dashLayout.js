@@ -1,4 +1,7 @@
 Template.dashLayout.helpers({
+  showProfilePreview: function() {
+    return Router.current().route.getName() !== 'recruiter-reviews' ? true : false;
+  },
   onboardingComplete: function() {
     const user = Meteor.user();
     if (!user) {
