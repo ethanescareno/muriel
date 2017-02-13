@@ -1,0 +1,101 @@
+<template name="invites">
+  <div class="template-profile">
+    <div class="row">
+        <div class="col-md-10">
+          <h3 id="invite-title">Invites</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-10">
+            <p>Some direction text here.</p>
+        </div>
+    </div>
+    {{#if showTabs}}
+    <div class="row">
+      <div class="col-md-10">
+        {{#basicTabs name="" tabs=tabs activeTab=activeTab}}
+          {{#tabContent slug="companies"}}
+          <div class="">
+            <button class="btn btn-lg btn-sendinvites" id="sendInvitesCompanies"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Send Invites</button>
+          </div>
+          <table style="width:100%">
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Company Name</th>
+              <th>Title</th>
+              <th>Email</th>
+              <th><input type="checkbox" id="select-all-companies" value="option1" aria-label=""></th>
+            </tr>
+            {{#each companies}}
+              <tr>
+                <td>{{this.firstName}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.company}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.email}}</td>
+                <td><input class="checkbox-companies" type="checkbox" id="blankCheckbox" value={{this.email}} data-id={{this._id}} aria-label=""></td>
+              </tr>
+            {{/each}}
+          </table>
+          {{> defaultBootstrapPaginator pagination=templatePaginationCompanies limit="30" containerClass="text-center" onClick=clickEvent}}
+          {{/tabContent}}
+
+          {{#tabContent slug="candidates"}}
+          <div class="">
+            <button class="btn btn-lg btn-sendinvites" id="sendInvitesCandidates"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Send Invites</button>
+          </div>
+          <table style="width:100%">
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Company Name</th>
+              <th>Title</th>
+              <th>Email</th>
+              <th><input type="checkbox" id="select-all-candidates" value="option1" aria-label=""></th>
+            </tr>
+            {{#each candidates}}
+              <tr>
+                <td>{{this.firstName}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.company}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.email}}</td>
+                <td><input class="checkbox-candidates" type="checkbox" id="blankCheckbox" value={{this.email}} data-id={{this._id}} aria-label=""></td>
+              </tr>
+            {{/each}}
+          </table>
+          {{> defaultBootstrapPaginator pagination=templatePaginationCandidates limit="30" containerClass="text-center" onClick=clickEvent}}
+          {{/tabContent}}
+
+          {{#tabContent slug="recentlyInvited"}}
+          <table style="width:100%">
+            <tr>
+              <th>Type</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Company Name</th>
+              <th>Title</th>
+              <th>Email</th>
+            </tr>
+            {{#each recentlyInvited}}
+              <tr>
+                <td>{{this.type}}</td>
+                <td>{{this.firstName}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.company}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.email}}</td>
+              </tr>
+            {{/each}}
+          </table>
+          {{> defaultBootstrapPaginator pagination=templatePaginationCompanies limit="30" containerClass="text-center" onClick=clickEvent}}
+          {{/tabContent}}
+
+
+        {{/basicTabs}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</template>

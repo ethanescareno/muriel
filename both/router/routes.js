@@ -59,3 +59,33 @@ Router.route('/dashborad/account',{
     Meteor.subscribe('userData');
   },
 });
+
+Router.route('/dashborad/invites',{
+  name: 'invites',
+  template: 'invites',
+  // layoutTemplate: 'dashLayout',
+  controller: 'InvitesController',
+  waitOn: function() {
+    Meteor.subscribe('userData');
+  },
+});
+
+Router.route('/recruiter/:firstName-:lastName-recruiter-q/review', {
+  name: 'newReview',
+  template: 'newReview',
+  controller: 'NewReviewController',
+  waitOn: function() {
+    Meteor.subscribe('userUnique', this.params.userId);
+    Meteor.subscribe('userData');
+  },
+});
+
+Router.route('/dashborad/reviews',{
+  name: 'reviews',
+  template: 'reviews',
+  // layoutTemplate: 'dashLayout',
+  controller: 'ReviewsController',
+  waitOn: function() {
+    Meteor.subscribe('userData');
+  },
+});

@@ -2,6 +2,7 @@
 {{> _dashHeader}}
     <div id="wrapper">
       {{#if showProfilePreview}}
+      {{#if showNewReview}}
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -18,10 +19,10 @@
                 </li>
                 {{#if onboardingComplete}}
                 <li>
-                    <a href="#"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Invites</a>
+                    <a href="" id="invites" class="activeUser"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Invites</a>
                 </li>
                  <li>
-                    <a href="#"><i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Reviews</a>
+                    <a href="" id="reviews" class="activeUser"><i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Reviews</a>
                 </li>
 
                 <li>
@@ -34,6 +35,7 @@
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
+        {{/if}}
         {{/if}}
         <!-- Page Content -->
         <div id="page-content-wrapper">

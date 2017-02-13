@@ -2,6 +2,9 @@ Template.dashLayout.helpers({
   showProfilePreview: function() {
     return Router.current().route.getName() !== 'recruiter-reviews' ? true : false;
   },
+  showNewReview: function() {
+    return Router.current().route.getName() !== 'newReview' ? true : false;
+  },
   onboardingComplete: function() {
     const user = Meteor.user();
     if (!user) {
@@ -69,6 +72,10 @@ Template.dashLayout.events({
         Router.go('contacts');
       } else if (goRoute == 'account') {
         Router.go('account');
+      }else if (goRoute == 'invites') {
+        Router.go('invites');
+      }else if (goRoute == 'reviews') {
+        Router.go('reviews');
       }
     } else {
       Blaze.renderWithData(Template.modal, {

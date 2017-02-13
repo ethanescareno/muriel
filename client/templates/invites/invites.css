@@ -1,0 +1,10 @@
+#invite-title{
+  color: #12dbbc;
+}
+
+.btn-sendinvites{
+  color: white;
+  background: #12dbbc;
+  float: right;
+  font-family: 'Catamaran', sans-serif !important;
+}

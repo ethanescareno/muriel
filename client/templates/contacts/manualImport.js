@@ -8,7 +8,8 @@ Template.manualImport.events({
       firstName: $('#firstName').val(),
       lastName: $('#lastName').val(),
       email: $('#email').val(),
-      company: $('#company').val()
+      company: $('#company').val(),
+      lastSentInvitationDays: 11
     });
     $('.modal').modal('hide');
     const user = Meteor.user();

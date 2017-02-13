@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Email</title>
+  <link href="html-email.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+<body bgcolor="#f6f6f6" style="font-family: Arial; background-color: #0A344E;">
+
+<table width="630" class="container" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<table align="left">
+				<tr>
+					<td width="188" class="Logo">
+						<img src="https://s24.postimg.org/jtdiwqsxh/logo.png">
+					</td>
+				</tr>
+			</table>
+			<table align="right">
+				<tr>
+					<td height="70" class="viewWebsite">
+						<!-- <p style="font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 10px; padding: 0; margin: 0;">Trouble viewing? Read this <a href="#" style="color: #990000;">online</a>.</p> -->
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+<table width="630" bgcolor="#fcfcfc" style="border: 1px solid #dddddd; line-height: 135%;" class="container" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td bgcolor="#fcfcfc" colspan="3" width="100%" height="10">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="30"></td>
+		<td width="350" bgcolor="#fcfcfc" align="left" class="featuredImage">
+      <p>
+        Hello,<br><br>
+
+        It’s no secret that the recruiting industry needs to improve it’s reputation. Let’s face it, there are some pretty inept recruiters out there.<br><br>
+
+        RecruiterQ is a new online platform designed to
+        help clean up the recruiting industry.<br><br>
+
+        Would you mind lending us a hand by clicking the link below to submit an honest review of {{firstName}} {{lastName}} who has identified you as a previous client?<br><br>
+
+        It only takes about 30 seconds and it sure would be a huge help.<br><br>
+
+        Thanks!<br><br>
+
+
+      </p>
+		</td>
+		<td width="30"></td>
+	</tr>
+	<tr>
+		<td colspan="3" height="15">&nbsp;</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td width="600" class="bottomImages">
+      <a href="http://localhost:3000/recruiter/{{firstName}}-{{lastName}}-recruiter-q/review"><button style='background-color: #0A344E; color: white; border: none; padding: 20px 25px; border-radius: 4px; font-size: 22px;' id="review">SUBMIT MY REVIEW</button></a>
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3" height="3">&nbsp;</td>
+	</tr>
+</table>
+
+<p style="font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 10px; padding: 0; margin: 0; text-align: center; padding-top: 20px; padding-bottom: 20px;"><a style="color: #fff;" href="http://localhost:3000/recruiter/{{firstName}}-{{lastName}}-recruiter-q/review">No thanks, remove me from {{firstName}} {{lastName}}’s contact list </a></p>
+
+</body>
+</html>

@@ -1,4 +1,10 @@
 Template.previewProfile.helpers({
+  reviewIsPublic: function() {
+    return Reviews.find({publicReview: true}).fetch();
+  },
+  reviews: function() {
+    return Reviews.find();
+  },
   userData: function() {
     return Meteor.user();
   },

@@ -1,0 +1,103 @@
+@media only screen and (max-width : 640px) {
+
+	table[class="container"] {
+        width: 98% !important;
+    }
+
+
+    [class="topDiv"] img {
+	    width: 95% !important;
+    }
+
+    td[class="spacer"] {
+	    display: none !important;
+    }
+    td[class="belowFeature"] {
+	    width: 95% !important;
+	    display: inline-block;
+	    padding-left: 15px;
+	    margin-bottom: 20px;
+    }
+    td[class="belowFeature"] img {
+	    float: left;
+	    margin-right: 15px;
+    }
+
+    td[class="featuredImage"] {
+	    width: 95% !important;
+    }
+    td[class="featuredImage"] img {
+	    width: 100% !important;
+    }
+
+    [class="bottomImages"] img {
+	    width: 48% !important;
+    }
+
+
+	}
+
+	@media only screen and (min-width: 481px) and (max-width: 570px) {
+
+	td[class="Logo"] {
+		width: 560px !important;
+		text-align: center;
+	}
+
+	td[class="viewWebsite"] {
+		width: 560px !important;
+		height: inherit !important;
+		text-align: center;
+	}
+
+	td[class="viewWebsite"] {
+		display: none;
+	}
+
+
+	}
+
+	@media only screen and (min-width: 250px) and (max-width: 480px) {
+
+	td[class="Logo"] {
+		width: 480px !important;
+		text-align: center;
+	}
+
+	td[class="viewWebsite"] {
+		display: none;
+	}
+	td[class="topDiv"] {
+		display: none;
+	}
+	td[class="bodyCopy"] p {
+		padding: 0 15px !important;
+		text-align: left !important;
+	}
+
+	td[class="bodyCopy"] h1 {
+		padding: 0 10px !important;
+	}
+
+	h1, h2 {
+		line-height: 120% !important;
+	}
+
+	[class="imageWrapper"] {
+		display: inline-block;
+	}
+	td[class="belowFeature"] p, td[class="belowFeature"] h3 {
+		padding-right: 15px;
+	}
+
+	[class="bottomImages"] {
+		text-align: center !important;
+	}
+
+	[class="bottomImages"] img {
+		width: 275px !important;
+		margin-bottom: 15px;
+		float: none;
+	}
+
+	}

@@ -180,7 +180,8 @@ var uploadCSV = function(file) {
             email: contact[5] || 'No Email',
             company: contact[29] || 'No Company',
             type: '',
-            owner: Meteor.userId()
+            owner: Meteor.userId(),
+            lastSentInvitationDays: 11
           })
         });
         Dropzone.forElement("#dropzoneDiv").removeAllFiles(true);

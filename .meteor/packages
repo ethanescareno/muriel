@@ -54,3 +54,6 @@ standard-minifier-js
 shell-server
 kurounin:pagination
 kurounin:pagination-blaze
+email
+meteorhacks:ssr
+barbatus:stars-rating
