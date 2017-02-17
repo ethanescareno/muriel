@@ -5,13 +5,16 @@ Template.invites.events({
     const emailData = {
       firstName: Meteor.user().profile.firstName,
       lastName: Meteor.user().profile.lastName,
-    }
+      userId: Meteor.userId(),
+      }
     emails.each(function() {
+      emailData.email = $(this).val();
         Meteor.call('sendEmail',
                 $(this).val(),
                 'recruiterq2017@gmail.com',
                 `What’s your opinion on ${emailData.firstName} ${emailData.lastName} ?`,
-                'This is a test of Email.send.');
+                emailData
+                );
         CSVData.update({
           _id: $(this).attr('data-id')
         }, {
@@ -30,14 +33,15 @@ Template.invites.events({
     const emails = $('.checkbox-companies:checked');
     const emailData = {
       firstName: Meteor.user().profile.firstName,
-      lastName: Meteor.user().profile.lastName
+      lastName: Meteor.user().profile.lastName,
+      userId: Meteor.userId(),
     }
     emails.each(function() {
+      emailData.email = $(this).val();
         Meteor.call('sendEmail',
                 $(this).val(),
                 'recruiterq2017@gmail.com',
                 `What’s your opinion on ${emailData.firstName} ${emailData.lastName} ?`,
-                'This is a test of Email.send.',
                 emailData);
         CSVData.update({
           _id: $(this).attr('data-id')

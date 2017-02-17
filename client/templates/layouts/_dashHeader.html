@@ -22,9 +22,13 @@
           <!-- <progress value="{{currentProgress}}" max="100">{{currentProgress}}%</progress> -->
         </div>
         {{/if}}
+        {{#if showProfileReviews}}
+        {{#if showReview}}
         <div class="dash-nav-right">
             <a href="#" data-action="logout"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> Sign Out</a>
         </div>
+        {{/if}}
+        {{/if}}
       </div>
 
 

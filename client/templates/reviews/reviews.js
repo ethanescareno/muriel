@@ -1,6 +1,6 @@
 Template.reviews.helpers({
   reviews: function() {
-    return Reviews.find();
+    return Reviews.find({user: Meteor.userId()});
   },
   userq: function() {
     return this.use == true ? true : false

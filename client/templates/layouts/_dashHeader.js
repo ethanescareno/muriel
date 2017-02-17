@@ -6,10 +6,16 @@ Template._dashHeader.helpers({
       const profileDone = user.onboard.profileStep;
       return !linkedinDone || !profileDone;
     }
-    return true;
+    return false;
   },
   showProfilePreview: function() {
     return Router.current().route.getName() === 'recruiter-reviews' ? true : false;
+  },
+  showReview: function() {
+    return Router.current().route.getName() !== 'newReview' ? true : false;
+  },
+  showProfileReviews: function() {
+    return Router.current().route.getName() !== 'recruiter-reviews' ? true : false;
   },
   currentStep: function() {
     const user = Meteor.user();

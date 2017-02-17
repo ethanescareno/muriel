@@ -70,7 +70,7 @@ Router.route('/dashborad/invites',{
   },
 });
 
-Router.route('/recruiter/:firstName-:lastName-recruiter-q/review', {
+Router.route('/recruiter/:firstName-:lastName-recruiter-q-:userId/review/:email', {
   name: 'newReview',
   template: 'newReview',
   controller: 'NewReviewController',

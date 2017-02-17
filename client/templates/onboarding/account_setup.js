@@ -47,6 +47,21 @@ Template.account_setup.events({
 Template.account_setup.onRendered(function(){
   $('#industries').multiselect({
     buttonWidth: '100%',
-    maxHeight: 200
+    maxHeight: 200,
+    onChange: function(option, checked) {
+      const industries = $('#industries').val();
+      if (industries.length >= 3) {
+        // Disable all other checkboxes.
+        const industriesNonSelectedOptions = $('#industries option').filter(function() {
+            return !$(this).is(':selected');
+        });
+
+        industriesNonSelectedOptions.each(function() {
+            var input = $('input[value="' + $(this).val() + '"]');
+            input.prop('disabled', true);
+            input.parent('li').addClass('disabled');
+        });
+      }
+    }
   });
 })

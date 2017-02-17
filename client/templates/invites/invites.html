@@ -34,7 +34,7 @@
                 <td>{{this.company}}</td>
                 <td>{{this.title}}</td>
                 <td>{{this.email}}</td>
-                <td><input class="checkbox-companies" type="checkbox" id="blankCheckbox" value={{this.email}} data-id={{this._id}} aria-label=""></td>
+                <td><input class="checkbox-companies" type="checkbox" id="blankCheckbox" value={{this.email}} data-id={{this._id}} data-fname={{this.firstName}} data-lname={{this.lastName}} data-type={{this.type}} ria-label=""></td>
               </tr>
             {{/each}}
           </table>

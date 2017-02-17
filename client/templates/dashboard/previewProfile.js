@@ -1,6 +1,22 @@
 Template.previewProfile.helpers({
   reviewIsPublic: function() {
-    return Reviews.find({publicReview: true}).fetch();
+    const user = Router.current().params.userId;
+    return Reviews.find({
+      user: user,
+      publicReview: true
+    }).fetch();
+  },
+  recruiterRating: function() {
+    const user = Router.current().params.userId;
+    const userReviews = Reviews.find({
+      user: user,
+      publicReview: true
+    }).fetch();
+    let userReviewsTotal = 0;
+    userReviews.forEach(function(e){
+      userReviewsTotal += e.overall;
+    });
+    return userReviewsTotal / userReviews.length;
   },
   reviews: function() {
     return Reviews.find();
