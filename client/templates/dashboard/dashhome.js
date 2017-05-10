@@ -14,13 +14,10 @@ Template.dashhome.rendered = function() {
               Meteor.call('updateModalUser');
               $('.modal').modal('hide');
             },
-            modalTitle: 'Please Read Careful',
-            modalToRenderName: 'longText'
+            modalTitle: 'Welcome to RecruiterQ!',
+            modalToRenderName: 'longText',
+            modalTemplate: 'modalDashboardBody'
           }, document.body);
-        } else if (!profilePassed) {
-          Router.go('profile');
-        } else if (!linkedinPassed) {
-          Router.go('contacts');
         }
       }
     }

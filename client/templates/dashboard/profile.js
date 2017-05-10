@@ -25,7 +25,6 @@ function initiDropZone(tmpl) {
         var queryPicture = ProfileImages.findOne({
           'metadata.owner': Meteor.userId()
         })
-        console.log(queryPicture);
         if (queryPicture) {
           ProfileImages.remove({_id: queryPicture._id})
         }
@@ -49,6 +48,8 @@ Template.profile.events({
   'click .previewProfile': function() {
     const user = Meteor.user();
     const newTab = Router.url('recruiter-reviews', {
+      city: user.profile && user.profile.city || 'noCity',
+      zipcode: user.profile && user.profile.zip || 'noZipcode',
       firstName: user.profile && user.profile.firstName || 'nofirstname',
       lastName: user.profile && user.profile.lastName || 'nolastName',
       userId: user._id
@@ -104,7 +105,9 @@ Template.profile.events({
         records: Records.find().fetch(),
         education: Education.find().fetch(),
         industries: user.profile && user.profile.industries,
-        createAcct1: user.profile && user.profile.createAcct1
+        createAcct1: user.profile && user.profile.createAcct1,
+        city: user.profile && user.profile.city,
+        state: user.profile && user.profile.state,
       },
       onboard: {
         modalDashboard: Meteor.user().onboard.modalDashboard || false,
@@ -173,7 +176,6 @@ Template.profile.helpers({
     return this.newRecord;
   },
   showEditRecord: function() {
-    console.log(this.isNew, Template.instance().recordToEditId.get() === this._id, this._id);
     return this.isNew || Template.instance().recordToEditId.get() === this._id;
   },
   showEditEducation: function() {

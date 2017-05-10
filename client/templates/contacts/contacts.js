@@ -60,8 +60,9 @@ Template.contacts.events({
             const linkedinDone = onboard.linkedin;
             if (!linkedinDone) {
               Blaze.renderWithData(Template.modal, {
-                modalTitle: 'Congratulations you have finished on-boarding.',
-                modalToRenderName: 'longText'
+                modalTitle: 'Congratulations! You’ve been successfully onboarded.',
+                modalToRenderName: 'longText',
+                modalTemplate: 'onBoardingFinishedBody'
               }, document.body);
               Meteor.users.update({
                 _id: Meteor.userId()
@@ -190,8 +191,9 @@ var uploadCSV = function(file) {
         const linkedinDone = onboard.linkedin;
         if (!linkedinDone) {
           Blaze.renderWithData(Template.modal, {
-            modalTitle: 'Congratulations you have finished on-boarding.',
-            modalToRenderName: 'longText'
+            modalTitle: 'Congratulations! You’ve been successfully onboarded.',
+            modalToRenderName: 'longText',
+            modalTemplate: 'onBoardingFinishedBody'
           }, document.body);
           Meteor.users.update({
             _id: Meteor.userId()
