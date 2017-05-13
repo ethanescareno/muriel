@@ -19,6 +19,9 @@ Template.dashLayout.helpers({
     const textDone = onboard.modalDashboard;
     const linkedinDone = onboard.linkedin;
     return profileDone && textDone && linkedinDone;
+  },
+  isActive: function(name){
+    return Router.current().route.getName() === name ? 'background-color: #12dbbc; color: #fff;' : '';
   }
 })
 

@@ -5,7 +5,7 @@ AccountsTemplates.configureRoute('signIn', {
         if (user.profile.createAcct1) {
           Router.go('/dashboard/home');
         } else {
-          Router.go('/setup');	
+          Router.go('/setup');
         }
     }
 	//redirect:'/dashboard'

@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="row col-md-12">
-          <h3>INDUSTRY FOCUS</h3><br>
+          <h3 class="preview-headers">INDUSTRY FOCUS</h3>
           <b>
           {{#each this.profile.industries}}
           {{this}},
@@ -23,7 +23,7 @@
           </b>
         </div>
         <div class="row col-md-12">
-          <h3>EXPERIENCE</h3><br>
+          <h3 class="preview-headers">EXPERIENCE</h3>
           {{#if recordsExists}}
           {{#each records}}
           <h4>{{this.companyName}} {{this.position}} {{this.yearStart}}-{{this.yearEnd}}</h4>
@@ -32,7 +32,7 @@
           {{/if}}
         </div>
         <div class="row col-md-12">
-          <h3>EDUCATION</h3><br>
+          <h3 class="preview-headers">EDUCATION</h3>
           {{#if educationExists}}
           {{#each education}}
           <h4>{{this.institutionName}} {{this.certEarned}} {{this.yearEarned}}</h4>

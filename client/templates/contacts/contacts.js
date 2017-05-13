@@ -15,7 +15,7 @@ Template.contacts.events({
   },
   'click #openManualImport': function(event, template) {
     Blaze.renderWithData(Template.modal, {
-      modalTitle: 'Manual Import Contacts',
+      modalTitle: 'Manual Contact Import',
       modalToRenderName: 'manualImport',
       callFunction: false
     }, document.body);

@@ -35,7 +35,6 @@
 
         {{#basicTabs name="" tabs=tabs activeTab=activeTab}}
           {{#tabContent slug="companies"}}
-          Companies
           <table style="width:100%">
             <tr>
               <th>First name</th>
@@ -43,8 +42,8 @@
               <th>Company Name</th>
               <th>Title</th>
               <th>Email</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th style="text-align: center;">Edit</th>
+              <th style="text-align: center;">Delete</th>
             </tr>
             {{#each companies}}
               <tr>
@@ -53,8 +52,8 @@
                 <td>{{this.company}}</td>
                 <td>{{this.title}}</td>
                 <td>{{this.email}}</td>
-                <td><i class="fa fa-pencil" id="editCompany"></i></td>
-                <td><i class="fa fa-trash" id="deleteCompany"></i></td>
+                <td style="text-align: center;"><i class="fa fa-pencil" id="editCompany"></i></td>
+                <td style="text-align: center;"><i class="fa fa-trash" id="deleteCompany"></i></td>
               </tr>
             {{/each}}
           </table>
@@ -62,7 +61,6 @@
           {{/tabContent}}
 
           {{#tabContent slug="candidates"}}
-          Candidates
           <table style="width:100%">
             <tr>
               <th>First name</th>

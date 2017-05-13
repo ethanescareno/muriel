@@ -6,7 +6,7 @@
   <!--PIC, CONTACT AND BLURB-->
   <form>
     <div class="row">
-        <div class="box col-md-10" id="btnPro">
+        <div class="col-md-10" id="btnPro">
           <button type="button" class="btn saveProfile saveClass"> SAVE</button>
           {{#if onboardingComplete}}
           <button type="button" class="btn previewProfile">Preview</button>
@@ -51,11 +51,12 @@
       {{/if}}
       <div class="col-md-3">
         <div class="form-group">
-          <label for="blurb">Short Bio</label>
+          <label for="blurb" class="profileHeader">Short Bio</label>
           <textarea maxlength="200" id="blurb" style="width:100%; height:150px; border:1px solid #eeeeee;" class="blurbtxt col-md-4" value="{{this.profile.blurb}}" name="profile.blurb">{{this.profile.blurb}}</textarea>
         </div>
+        <span style="font-size: 12px;">Maximum 200 Characters</span>
       </div>
-      <div class="col-md-6">Public Contact Info<br><br>
+      <div class="col-md-6 profileHeader">Public Contact Info<br><br>
         <div class="form-group row">
           <label for="p_phone" class="col-xs-2 col-form-label">Phone</label>
           <div class="col-xs-8">
@@ -90,6 +91,7 @@
             <label for="mResume">Mini-Resume</label>
             <textarea maxlength="1500" id="mResume" style="width:100%; height:150px; border:1px solid #eeeeee;" class="mresumetxt col-md-4" value="{{this.profile.mresume}}" name="profile.mresume">{{this.profile.mresume}}</textarea>
           </div>
+          <span style="font-size: 12px;">Maximum 1500 Characters</span>
         </div>
     </div>
   <!--PROFESSIONAL RECORD-->
@@ -180,7 +182,7 @@
      </div>
   <!--EDUCATION, TRAINIING & CERTS-->
      <div class="row">
-        <div class="box col-md-10">Education <button type="button" id="addEducation" name="button"><i class="fa fa-plus"></i>Add Education</button></div>
+        <div class="box col-md-10">Education <button type="button" id="addEducation" name="button" class="btn"><i class="fa fa-plus"></i>Add Education</button></div>
      </div>
      <div class="row profile-table">
        <div class="col-md-10">
@@ -237,7 +239,7 @@
       </div>
      </div>
      <div class="row">
-         <div class="box col-md-10">
+         <div class="col-md-10">
            <button type="button" class="btn saveProfile saveClass"> SAVE</button>
            {{#if onboardingComplete}}
            <button type="button" class="btn previewProfile">Preview</button>

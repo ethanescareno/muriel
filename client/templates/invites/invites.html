@@ -2,7 +2,7 @@
   <div class="template-profile">
     <div class="row">
         <div class="col-md-10">
-          <h3 id="invite-title">Invites</h3>
+          <h3 class="page-header">Invites</h3>
         </div>
     </div>
     <div class="row">
@@ -27,7 +27,7 @@
         {{#basicTabs name="" tabs=tabs activeTab=activeTab}}
           {{#tabContent slug="companies"}}
           <div class="">
-            <button class="btn btn-lg btn-sendinvites" id="sendInvitesCompanies"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Send Invites</button>
+            <button class="btn btn-lg btn-sendinvites" style="margin-bottom: 25px;" id="sendInvitesCompanies"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Send Invites</button>
           </div>
           <table style="width:100%">
             <tr>
@@ -36,7 +36,7 @@
               <th>Company Name</th>
               <th>Title</th>
               <th>Email</th>
-              <th><input type="checkbox" id="select-all-companies" value="option1" aria-label=""></th>
+              <!--<th><input type="checkbox" id="select-all-companies" value="option1" aria-label=""></th>-->
             </tr>
             {{#each companies}}
               <tr>
@@ -54,7 +54,7 @@
 
           {{#tabContent slug="candidates"}}
           <div class="">
-            <button class="btn btn-lg btn-sendinvites" id="sendInvitesCandidates"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Send Invites</button>
+            <button class="btn btn-lg btn-sendinvites" id="sendInvitesCandidates" style="margin-bottom: 25px;"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Send Invites</button>
           </div>
           <table style="width:100%">
             <tr>
@@ -88,6 +88,7 @@
               <th>Company Name</th>
               <th>Title</th>
               <th>Email</th>
+              <th>Request Date</th>
             </tr>
             {{#each recentlyInvited}}
               <tr>
@@ -97,6 +98,7 @@
                 <td>{{this.company}}</td>
                 <td>{{this.title}}</td>
                 <td>{{this.email}}</td>
+                <td>{{this.sentInvitationDate}}</td>
               </tr>
             {{/each}}
           </table>

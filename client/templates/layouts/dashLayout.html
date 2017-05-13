@@ -8,21 +8,21 @@
             <ul class="sidebar-nav">
                 {{#if onboardingComplete}}
                 <li class="">
-                    <a href="{{ pathFor 'dashhome' }}"><i class="fa fa-tachometer fa-lg {{isActiveRoute regex='dashhome'}}" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
+                    <a href="{{ pathFor 'dashhome' }}" class ="" style="{{isActive 'dashhome'}}"><i class="fa fa-tachometer fa-lg {{isActiveRoute regex='dashhome'}}" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
                 </li>
                 {{/if}}
                 <li class="">
-                    <a href="{{ pathFor 'profile' }}"><i class="fa fa-id-card fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Profile</a>
+                    <a href="{{ pathFor 'profile' }}" style="{{isActive 'profile'}}"><i class="fa fa-id-card fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Profile</a>
                 </li>
                  <li class="">
-                    <a href="" id='contacts' class="activeUser"><i class="fa fa-database fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Contacts</a>
+                    <a href="" id='contacts' class="activeUser" style="{{isActive 'contacts'}}"><i class="fa fa-database fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Contacts</a>
                 </li>
                 {{#if onboardingComplete}}
                 <li>
-                    <a href="" id="invites" class="activeUser"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Invites</a>
+                    <a href="" id="invites" class="activeUser" style="{{isActive 'invites'}}"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Invites</a>
                 </li>
                  <li>
-                    <a href="" id="reviews" class="activeUser"><i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Reviews</a>
+                    <a href="" id="reviews" class="activeUser" style="{{isActive 'reviews'}}"><i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Reviews</a>
                 </li>
 
                 <li>
@@ -52,5 +52,5 @@
         </div>
         <!-- /#page-content-wrapper -->
     </div>
-  {{> _footer}}
+  {{> _footer style=""}}
 </template>
