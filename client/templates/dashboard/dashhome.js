@@ -16,7 +16,9 @@ Template.dashhome.rendered = function() {
             },
             modalTitle: 'Welcome to RecruiterQ!',
             modalToRenderName: 'longText',
-            modalTemplate: 'modalDashboardBody'
+            modalTemplate: 'modalDashboardBody',
+            style: "color: #e56e07; text-align: center;",
+            buttonText: 'Ok to Got it!',
           }, document.body);
         }
       }
