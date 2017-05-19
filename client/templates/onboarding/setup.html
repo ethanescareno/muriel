@@ -104,6 +104,7 @@
                             <span class="setupTextSm">City and State you currently recruit in</span>
                             <input type="text" class="col-sm-12 mt15 setup-input" value="" placeholder="City" id="city" />
                             <select type="text" class="col-sm-12 mt15 setup-input" placeholder="State" id="state">
+                              <option value="" selected="true" disabled="disabled">Choose</option>
                               {{#each states}}
                                 <option value="{{this}}">{{this}}</option>
                               {{/each}}

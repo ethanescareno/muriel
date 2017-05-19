@@ -59,7 +59,6 @@ Template.account_setup.events({
 
 Template.account_setup.helpers({
   states: function(){
-    console.log(states);
     return states;
   }
 });

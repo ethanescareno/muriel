@@ -24,7 +24,7 @@ Template.invites.events({
         });
     });
     Blaze.renderWithData(Template.modal, {
-      modalTitle: `${emails.length} Candidate invites have been added to the send queue.`,
+      modalTitle: `Review request sent to ${emails.length} contact(s)`,
       modalToRenderName: 'longText'
     }, document.body);
   },
@@ -52,7 +52,7 @@ Template.invites.events({
         });
     });
     Blaze.renderWithData(Template.modal, {
-      modalTitle: `${emails.length}  Company invites have been added to the send queue.`,
+      modalTitle: `Review request sent to ${emails.length} contact(s)`,
       modalToRenderName: 'longText'
     }, document.body);
   },
