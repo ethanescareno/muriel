@@ -60,6 +60,16 @@ Router.route('/dashborad/account',{
   },
 });
 
+Router.route('/dashborad/reports',{
+  name: 'reports',
+  template: 'reports',
+  // layoutTemplate: 'dashLayout',
+  controller: 'ControllerReports',
+  waitOn: function() {
+    Meteor.subscribe('userData');
+  },
+});
+
 Router.route('/dashborad/invites',{
   name: 'invites',
   template: 'invites',

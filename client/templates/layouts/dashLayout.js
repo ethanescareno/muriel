@@ -67,6 +67,8 @@ Template.dashLayout.events({
         Router.go('account');
       }else if (goRoute == 'invites') {
         Router.go('invites');
+      }else if (goRoute == 'reports') {
+        Router.go('reports');
       }else if (goRoute == 'reviews') {
         Router.go('reviews');
       }

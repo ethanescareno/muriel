@@ -1,5 +1,6 @@
 <template name="profile">
   {{> flashMessages}}
+  <h1 class="page-header">Profile</h1>
   {{#with userinfo}}
   <div class="template-profile">
   <!--STATUS-->
@@ -96,7 +97,7 @@
     </div>
   <!--PROFESSIONAL RECORD-->
      <div class="row">
-        <div class="box col-md-10">Work RECORD <button type="button" id="addRecord" name="button"><i class="fa fa-plus"></i>Add Record</button></div>
+        <div class="box col-md-10">Work Record <button type="button" id="addRecord" name="button"><i class="fa fa-plus"></i> Add</button></div>
      </div>
      <div class="row profile-table">
        <div class="col-md-10">
@@ -157,7 +158,7 @@
            <div class="col-md-1">
              <i class="fa fa-trash" id="deleteRecord"></i>
            </div>
-           <div class="col-md-12">
+           <div class="col-md-12" style="margin-top: 10px;">
              <b>Description</b><br>
              {{this.dutiesDescription}}
            </div>
@@ -182,7 +183,7 @@
      </div>
   <!--EDUCATION, TRAINIING & CERTS-->
      <div class="row">
-        <div class="box col-md-10">Education <button type="button" id="addEducation" name="button" class="btn"><i class="fa fa-plus"></i>Add Education</button></div>
+        <div class="box col-md-10">Education <button type="button" id="addEducation" name="button" class=""><i class="fa fa-plus"></i> Add</button></div>
      </div>
      <div class="row profile-table">
        <div class="col-md-10">
@@ -238,7 +239,7 @@
        {{/if}}
       </div>
      </div>
-     <div class="row">
+     <div class="row" style="margin-top: 25px;">
          <div class="col-md-10">
            <button type="button" class="btn saveProfile saveClass"> SAVE</button>
            {{#if onboardingComplete}}
