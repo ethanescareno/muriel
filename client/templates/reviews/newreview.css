@@ -8,3 +8,17 @@
   padding: 10px;
   margin: 10px;
 }
+
+.stars-rating {
+  margin-left: .44em;
+}
+
+.tea-title {
+  color: #12dbbc;
+}
+
+.fotter-fixed {
+  position: absolute;
+  bottom: -.5em;
+  margin-left: 50em;
+}

@@ -5,11 +5,18 @@ Meteor.methods({
     // without waiting for the email sending to complete.
     this.unblock();
     SSR.compileTemplate('htmlEmail', Assets.getText('html-email.html'));
+    var user = Meteor.users.findOne({ _id: this.userId });
+    var email = user && user.emails[0] && user.emails[0].address
+    Template.htmlEmail.helpers({
+      user: function() {
+        return email;
+      }
+    });
+
     Email.send({
-      to: to,
-      from: from,
+      to: 'ethan.rosanoo@gmail.com',//to,
+      from: 'ridgetopat.com',
       subject: subject,
-      // text: text,
       html: SSR.render('htmlEmail', emailData),
     });
   },
@@ -20,7 +27,7 @@ Meteor.methods({
     this.unblock();
     SSR.compileTemplate('htmlEmail', Assets.getText('html-emailReview.html'));
     Email.send({
-      to: to,
+      to: 'ethan.rosanoo@gmail.com',//to,
       from: from,
       subject: subject,
       // text: text,

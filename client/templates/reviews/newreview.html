@@ -1,10 +1,6 @@
 <template name="newReview">
   {{#if reviewSubmitted}}
-  <div class="row">
-    <div class="col-md-12">
-      <h1 id="submit-title">Review submitted.<br> Thank you.</h1>
-    </div>
-  </div>
+
   {{else}}
     <div class="template-profile">
       {{#with userData}}
@@ -13,7 +9,7 @@
             <div class="col-md-6" style="border-right: 3px solid rgba(128, 128, 128, 0.32)">
               <div class="row">
                 <div class="col-md-12">
-                  <h1 id="submit-title">Submit your review for :</h1>
+                  <h3 id="submit-title">Submit your review for :</h3>
                 </div>
               </div>
               <div class="row">
@@ -65,7 +61,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12" style="float: right; width: 100%;">
+                <div class="col-md-12" style="float: right; width: 100%; margin-right: 3em;">
                   <button class="btn btn-lg btn-sendinvites" id="submitReview"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Submit Review</button>
                 </div>
               </div>
@@ -83,7 +79,7 @@
               </div>
             </div>
             <div class="row col-md-12">
-              <h3>INDUSTRY FOCUS</h3><br>
+              <h3 class="tea-title">INDUSTRY FOCUS</h3><br>
               <b>
               {{#each this.profile.industries}}
               {{this}},
@@ -91,7 +87,7 @@
               </b>
             </div>
             <div class="row col-md-12">
-              <h3>EXPERIENCE</h3><br>
+              <h3 class="tea-title">EXPERIENCE</h3><br>
               {{#if recordsExists}}
               {{#each records}}
               <h4>{{this.companyName}} {{this.position}} {{this.yearStart}}-{{this.yearEnd}}</h4>
@@ -100,7 +96,7 @@
               {{/if}}
             </div>
             <div class="row col-md-12">
-              <h3>EDUCATION</h3><br>
+              <h3 class="tea-title">EDUCATION</h3><br>
               {{#if educationExists}}
               {{#each education}}
               <h4>{{this.institutionName}} {{this.certEarned}} {{this.yearEarned}}</h4>

@@ -174,12 +174,13 @@ var uploadCSV = function(file) {
         var recordsFound = data.length;
         data.splice(0, 1);
         data.forEach(function(contact) {
+          console.log(contact);
           CSVData.insert({
-            title: contact[31] || 'No Title',
-            firstName: contact[1] || 'No First Name',
-            lastName: contact[3] || 'No Last Name',
-            email: contact[5] || 'No Email',
-            company: contact[29] || 'No Company',
+            title: contact[3] || 'No Title',
+            firstName: contact[0] || 'No First Name',
+            lastName: contact[1] || 'No Last Name',
+            email: contact[4] || 'No Email',
+            company: contact[2] || 'No Company',
             type: '',
             owner: Meteor.userId(),
             lastSentInvitationDays: 11

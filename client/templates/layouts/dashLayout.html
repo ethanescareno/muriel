@@ -52,5 +52,21 @@
         </div>
         <!-- /#page-content-wrapper -->
     </div>
-  {{> _footer style=""}}
+    {{#if showCustomFooter}}
+    <footer class="fotter-fixed">
+      <div class="container">
+        <p class="text-center text-muted">
+          &copy; Copyright RecruiterQ 2017
+        </p>
+      </div>
+    </footer>
+    {{else}}
+    <footer >
+      <div class="container">
+        <p class="text-center text-muted">
+          &copy; Copyright RecruiterQ 2017
+        </p>
+      </div>
+    </footer>
+    {{/if}}
 </template>

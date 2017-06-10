@@ -59,7 +59,7 @@ Template.newReview.events({
       reviewerType: reviewerQuery.type
     });
     Blaze.renderWithData(Template.modal, {
-      modalTitle: 'Thanks for helping us make the recruiting industry better! Sincerely, The RecruiterQ Team',
+      modalTitle: 'Thanks for helping us make the recruiting industry better!',
       modalToRenderName: 'modalReview'
     }, document.body);
     Meteor.call('sendEmailReview',

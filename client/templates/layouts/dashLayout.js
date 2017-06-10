@@ -1,4 +1,7 @@
 Template.dashLayout.helpers({
+  showCustomFooter: function() {
+    return Router.current().route.getName() === 'newReview'
+  },
   showProfilePreview: function() {
     return Router.current().route.getName() !== 'recruiter-reviews' ? true : false;
   },
@@ -24,6 +27,7 @@ Template.dashLayout.helpers({
     return Router.current().route.getName() === name ? 'background-color: #12dbbc; color: #fff;' : '';
   }
 })
+
 
 Template.dashLayout.onRendered(function() {
   var self = this;

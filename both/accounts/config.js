@@ -10,8 +10,21 @@ AccountsTemplates.configureRoute('signIn', {
     }
 	//redirect:'/dashboard'
 });
+
+
+AccountsTemplates.configure({
+	defaultLayout: 'appLayout',
+  showForgotPasswordLink: true,
+	enablePasswordChange: true,
+});
+
+
 AccountsTemplates.configureRoute('signUp', {
 	layoutTemplate: 'appLayout',
-	redirect:'/setup'
+	redirect:'/setup',
 });
+
+AccountsTemplates.configureRoute('changePwd');
+AccountsTemplates.configureRoute('forgotPwd');
+AccountsTemplates.configureRoute('resetPwd');
 AccountsTemplates.configureRoute('ensureSignedIn', {layoutTemplate: 'appLayout'});
