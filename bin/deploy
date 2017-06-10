@@ -1,0 +1,6 @@
+# This script deploys to the specified enviroment.
+
+DEPLOY_ENV=${1:-production}
+
+mup setup --config=.deploy/mup-$DEPLOY_ENV.js --settings=.deploy/$DEPLOY_ENV-settings.json
+mup deploy --config=.deploy/mup-$DEPLOY_ENV.js --settings=.deploy/$DEPLOY_ENV-settings.json
