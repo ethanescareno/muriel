@@ -22,7 +22,7 @@ module.exports = {
     env: {
       NODE_ENV: 'production',
       PORT: 80,
-      ROOT_URL: 'http://104.236.19.3',
+      ROOT_URL: 'http://67.205.180.89',
       MONGO_URL: "mongodb://admin:123456@ds157278.mlab.com:57278/recruiterq"
     },
     deployCheckWaitTime: 120,
