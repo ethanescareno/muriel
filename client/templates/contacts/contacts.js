@@ -257,6 +257,7 @@ Template.contacts.onCreated(function () {
   self.csvData = new ReactiveVar(null)
   this.pagination = new Meteor.Pagination(CSVData, {
         filters: {
+          owner: Meteor.userId(),
           type: { $nin: ['company', 'candidate']}
         },
         sort: {
@@ -266,6 +267,7 @@ Template.contacts.onCreated(function () {
     });
   this.paginationCandidates = new Meteor.Pagination(CSVData, {
         filters: {
+          owner: Meteor.userId(),
           type: 'candidate'
         },
         sort: {
@@ -275,6 +277,7 @@ Template.contacts.onCreated(function () {
     });
     this.paginationCompanies = new Meteor.Pagination(CSVData, {
           filters: {
+            owner: Meteor.userId(),
             type: 'company'
           },
           sort: {

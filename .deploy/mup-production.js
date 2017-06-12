@@ -25,7 +25,7 @@ module.exports = {
       ROOT_URL: 'http://104.236.19.3',
       MONGO_URL: "mongodb://admin:123456@ds157278.mlab.com:57278/recruiterq"
     },
-    deployCheckWaitTime: 240,
+    deployCheckWaitTime: 120,
     enableUploadProgressBar: true,
   }
 };

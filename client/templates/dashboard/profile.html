@@ -52,12 +52,12 @@
       {{/if}}
       <div class="col-md-3">
         <div class="form-group">
-          <label for="blurb" class="profileHeader">Short Bio</label>
+          <label for="blurb" class="profileHeader profile-header-bold">Short Bio</label>
           <textarea maxlength="200" id="blurb" style="width:100%; height:150px; border:1px solid #eeeeee;" class="blurbtxt col-md-4" value="{{this.profile.blurb}}" name="profile.blurb">{{this.profile.blurb}}</textarea>
         </div>
         <span style="font-size: 12px;">Maximum 200 Characters</span>
       </div>
-      <div class="col-md-6 profileHeader">Public Contact Info<br><br>
+      <div class="col-md-6 profileHeader profile-header-bold">Public Contact Info<br><br>
         <div class="form-group row">
           <label for="p_phone" class="col-xs-2 col-form-label">Phone</label>
           <div class="col-xs-8">
@@ -89,7 +89,7 @@
     <div class="row">
         <div class="box col-md-10">
           <div class="form-group">
-            <label for="mResume">Mini-Resume</label>
+            <label for="mResume" class="profile-header-bold">Mini-Resume</label>
             <textarea maxlength="1500" id="mResume" style="width:100%; height:150px; border:1px solid #eeeeee;" class="mresumetxt col-md-4" value="{{this.profile.mresume}}" name="profile.mresume">{{this.profile.mresume}}</textarea>
           </div>
           <span style="font-size: 12px;">Maximum 1500 Characters</span>
@@ -97,7 +97,7 @@
     </div>
   <!--PROFESSIONAL RECORD-->
      <div class="row">
-        <div class="box col-md-10">Work Record <button type="button" id="addRecord" name="button"><i class="fa fa-plus"></i> Add</button></div>
+        <div class="box col-md-10 profile-header-bold">Work Record <button type="button" id="addRecord" name="button"><i class="fa fa-plus"></i> Add</button></div>
      </div>
      <div class="row profile-table">
        <div class="col-md-10">
@@ -150,7 +150,11 @@
              {{this.yearStart}}
            </div>
            <div class="col-md-2">
-             {{this.yearEnd}}
+             {{#if this.workHere}}
+              <span>Present</span>
+              {{else}}
+              {{this.yearEnd}}
+            {{/if}}
            </div>
            <div class="col-md-1">
               <i class="fa fa-pencil" id="editRecord"></i>
@@ -183,7 +187,7 @@
      </div>
   <!--EDUCATION, TRAINIING & CERTS-->
      <div class="row">
-        <div class="box col-md-10">Education <button type="button" id="addEducation" name="button" class=""><i class="fa fa-plus"></i> Add</button></div>
+        <div class="box col-md-10 profile-header-bold">Education <button type="button" id="addEducation" name="button" class=""><i class="fa fa-plus"></i> Add</button></div>
      </div>
      <div class="row profile-table">
        <div class="col-md-10">

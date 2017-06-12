@@ -14,15 +14,21 @@
       <input class="form-control"  name="yearStart" type="text" value="{{this.yearStart}}" id="yearStart">
     </div>
     <div class="form-group">
-      <label for="yearEnd">Year End</label>
-      <input class="form-control"  name="yearEnd" type="text" value="{{this.yearEnd}}" id="yearEnd">
+      <div class="row">
+      <div class="col-md-2">
+        <label for="workHere">I Currently Work Here</label>
+         <input type="checkbox" name="workHere" value="{{this.yearEnd}}" id="workHere{{record._id}}" class="workHereInput" checked="{{isDisabled}}"/>
+      </div>
+       <div class="col-md-10">
+         {{#if isDisabled}}
+          <span>Present</span>
+          {{else}}
+          <label for="yearEnd">Year End</label>
+          <input class="form-control"  name="yearEnd" type="text" value="{{this.yearEnd}}" id="yearEnd" disabled="{{isDisabled}}">
+        {{/if}}
+       </div>
+     </div>
     </div>
-    <!-- <div class="form-group">
-      <select name="industries" class="typeContactSelect">
-        <option value="companie" selected>Companie</option>
-        <option value="candidate">Candidate</option>
-      </select>
-    </div> -->
     <div class="form-group">
       <label for="dutiesDescription">Duties Description</label>
       <textarea maxlength="500" id="dutiesDescription" style="width:100%; height:150px; border:1px solid #eeeeee;" class="mresumetxt col-md-4" value="{{this.dutiesDescription}}" name="dutiesDescription">{{this.dutiesDescription}}</textarea>

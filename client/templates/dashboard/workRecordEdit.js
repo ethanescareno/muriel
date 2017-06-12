@@ -1,6 +1,9 @@
 Forms.mixin(Template.workRecordEdit);
 
 Template.workRecordEdit.events({
+  'click .workHereInput': function(event, template) {
+    template.currentlyWorkHere.set(template.$(`#workHere${template.data.data._id}`).is(":checked"))
+  },
   'click #cancelEdit': function(event, template) {
     template.data.data.templateParent.recordToEditId.set(null);
   },
@@ -11,6 +14,7 @@ Template.workRecordEdit.events({
     // const userRecords = Meteor.user() && Meteor.user().profile.records;
     const documentId = doc._id;
     delete doc._id;
+    doc.workHere = template.$(`#workHere${template.data.data._id}`).is(":checked");
     if (!doc.isNew) {
       console.log("edit");
       Records.update(
@@ -28,7 +32,6 @@ Template.workRecordEdit.events({
         }
       });
     } else {
-      console.log("new");
       doc.isNew = false;
       Meteor.users.update({
         _id: userId
@@ -58,8 +61,16 @@ Template.workRecordEdit.events({
 Template.workRecordEdit.helpers({
   record: function() {
     return Template.instance().data.data;
+  },
+  isDisabled: function() {
+    return Template.instance().currentlyWorkHere.get();
   }
 })
+
+Template.workRecordEdit.onCreated(function() {
+  const self = this;
+  self.currentlyWorkHere = new ReactiveVar(true)
+});
 
 Template.workRecordEdit.onRendered(function() {
   var self = this;
