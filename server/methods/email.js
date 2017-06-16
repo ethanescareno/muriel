@@ -14,7 +14,7 @@ Meteor.methods({
     });
 
     Email.send({
-      to: 'ethan.rosanoo@gmail.com',//to,
+      to: to,
       from: 'ridgetopat.com',
       subject: subject,
       html: SSR.render('htmlEmail', emailData),
@@ -27,8 +27,8 @@ Meteor.methods({
     this.unblock();
     SSR.compileTemplate('htmlEmail', Assets.getText('html-emailReview.html'));
     Email.send({
-      to: 'ethan.rosanoo@gmail.com',//to,
-      from: from,
+      to: to,
+      from: 'ridgetopat.com',
       subject: subject,
       // text: text,
       html: SSR.render('htmlEmail'),
