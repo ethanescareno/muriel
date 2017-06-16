@@ -7,33 +7,36 @@ Template.newReview.helpers({
     }
   },
   userData: function() {
-    return Meteor.user();
+    return Meteor.users.findOne(Router.current().params.userId);
   },
   profilePicture: function() {
     return ProfileImages.findOne({
-      'metadata.owner': Meteor.userId()
+      'metadata.owner': Router.current().params.userId
     })
   },
   profilePictureExist: function() {
 
     return ProfileImages.find({
-      'metadata.owner': Meteor.userId()
+      'metadata.owner': Router.current().params.userId
     }).count() > 0;
   },
   records: function() {
-    const user = Meteor.user() && Meteor.user().profile
-    return user.records;
+    const user = Meteor.users.findOne(Router.current().params.userId);
+    return user && user.profile && user.profile.records;
   },
   recordsExists: function() {
-    const user = Meteor.user() && Meteor.user().profile;
-    return user.records.length > 0 ? true : false;
+    const user = Meteor.users.findOne(Router.current().params.userId);
+    const profile = Meteor.user() && Meteor.user().profile;
+    return profile && user.profile.records.length > 0 ? true : false;
   },
   education:function() {
-    const user = Meteor.user() && Meteor.user().profile
-    return user.education;  },
+    const user = Meteor.users.findOne(Router.current().params.userId);
+    return user && user.profile && user.profile.education;
+  },
   educationExists:function() {
-    const user = Meteor.user() && Meteor.user().profile;
-    return user.education.length > 0 ? true : false;  },
+    const user = Meteor.users.findOne(Router.current().params.userId);
+    return user && user.profile && user.profile.education.length > 0 ? true : false;
+  },
 
 })
 
@@ -62,8 +65,10 @@ Template.newReview.events({
       modalTitle: 'Thanks for helping us make the recruiting industry better!',
       modalToRenderName: 'modalReview'
     }, document.body);
+    const recruiter = Meteor.users.findOne(Router.current().params.userId);
+    const email = recruiter && recruiter.profile.p_email;
     Meteor.call('sendEmailReview',
-            Meteor.user().profile.p_email,
+            email,
             'recruiterq2017@gmail.com',
             'You Have a New Review'
             );

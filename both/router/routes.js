@@ -86,7 +86,6 @@ Router.route('/recruiter/:firstName-:lastName-recruiter-q-:userId/review/:email'
   controller: 'NewReviewController',
   waitOn: function() {
     Meteor.subscribe('userUnique', this.params.userId);
-    Meteor.subscribe('userData');
   },
 });
 
