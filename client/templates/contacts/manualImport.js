@@ -3,6 +3,7 @@ Forms.mixin(Template.manualImport);
 Template.manualImport.events({
   'click #save': function (e, tmpl, doc) {
     CSVData.insert({
+      owner: Meteor.userId(),
       type: $('#type').val(),
       title: $('#title').val(),
       firstName: $('#firstName').val(),
