@@ -6,7 +6,9 @@ Meteor.methods({
     this.unblock();
     SSR.compileTemplate('htmlEmail', Assets.getText('html-email.html'));
     var user = Meteor.users.findOne({ _id: this.userId });
-    var email = user && user.emails[0] && user.emails[0].address
+    var email = user && user.emails[0] && user.emails[0].address;
+    var url = Meteor.isProduction ? '67.205.180.89' : 'localhost:3000';
+    emailData.url = url;
     Template.htmlEmail.helpers({
       user: function() {
         return email;
@@ -14,7 +16,7 @@ Meteor.methods({
     });
 
     Email.send({
-      to: 'ethan.rosanoo@gmail.com',//to,
+      to: to,
       from: 'ridgetopat.com',
       subject: subject,
       html: SSR.render('htmlEmail', emailData),
