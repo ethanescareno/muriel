@@ -178,7 +178,8 @@ Template.invites.onCreated(function () {
     self.csvData = new ReactiveVar(null)
     self.pagination = new Meteor.Pagination(CSVData, {
           filters: {
-            type: { $nin: ['company', 'candidate']}
+            type: { $nin: ['company', 'candidate']},
+            owner: Meteor.userId(),
           },
           sort: {
               _id: -1
@@ -188,7 +189,8 @@ Template.invites.onCreated(function () {
     self.paginationCandidates = new Meteor.Pagination(CSVData, {
           filters: {
             type: 'candidate',
-            lastSentInvitationDays: { $gt: 10 }
+            owner: Meteor.userId(),
+            lastSentInvitationDays: { $gt: 10 },
           },
           sort: {
               _id: -1
@@ -199,7 +201,8 @@ Template.invites.onCreated(function () {
         self.paginationCompanies = new Meteor.Pagination(CSVData, {
               filters: {
                 type: 'company',
-                lastSentInvitationDays: { $gt: 10 }
+                owner: Meteor.userId(),
+                lastSentInvitationDays: { $gt: 10 },
               },
               sort: {
                   _id: -1

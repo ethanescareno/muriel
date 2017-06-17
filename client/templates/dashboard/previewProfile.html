@@ -26,7 +26,7 @@
           <h3 class="preview-headers">EXPERIENCE</h3>
           {{#if recordsExists}}
           {{#each records}}
-          <h4>{{this.companyName}} {{this.position}} {{this.yearStart}}-{{this.yearEnd}}</h4>
+          <h4>{{this.companyName}} {{this.position}} {{this.yearStart}}-{{yearEndText this}}</h4>
           <p>{{this.dutiesDescription}}</p>
           {{/each}}
           {{/if}}
@@ -69,6 +69,13 @@
                 <div class="box col-md-4 blurb">
                   <h5>{{this.comment}}</h5>
                 </div>
+              </div>
+              <div>
+                {{#if isCompany}}
+                  By: {{this.reviewerFirstName}} {{this.reviewerLastName}} {{#if reviewerData}} - {{reviewerData.title}} at {{reviewerData.company}} {{/if}}
+                {{else}}
+                  By: {{this.reviewerFirstName}} {{this.reviewerLastName}} (job seeker)
+                {{/if}}
               </div>
             </div>
               {{/each}}

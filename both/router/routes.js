@@ -41,6 +41,7 @@ Router.route('/recruiter-reviews/:city-:zipcode-:firstName-:lastName-recruiter-q
   controller: 'PreviewProfileController',
   waitOn: function() {
     Meteor.subscribe('userUnique', this.params.userId);
+    Meteor.subscribe('reviewers', this.params.userId)
     Meteor.subscribe('userData');
   },
 });

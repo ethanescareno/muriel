@@ -1,4 +1,8 @@
 Template.previewProfile.helpers({
+  yearEndText: function(data) {
+    const { workHere, yearEnd } = data;
+    return workHere ? 'present' : yearEnd;
+  },
   reviewIsPublic: function() {
     const user = Router.current().params.userId;
     return Reviews.find({
@@ -48,6 +52,15 @@ Template.previewProfile.helpers({
     return user.education;  },
   educationExists:function() {
     const user = Meteor.user() && Meteor.user().profile;
-    return user.education.length > 0 ? true : false;  },
-
+    return user.education.length > 0 ? true : false;
+  },
+  isCompany:function() {
+    return this.reviewerType === 'company';
+  },
+  reviewerData:function() {
+    return CSVData.findOne({
+      email: this.reviewerEmail,
+      type: 'company',
+    });
+  }
 })
